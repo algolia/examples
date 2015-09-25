@@ -1,0 +1,16 @@
+.wrapper {
+  padding: 40px;
+  width: 900px;
+}
+
+#search-results-container {
+  padding: 20px;
+  margin: 5px 0 20px 0;
+  border: solid 1px #ccc;
+}
+
+  #search-results-container em {
+    font-weight: bold;
+    background: #FFFAC0;
+    font-style: normal;
+  }

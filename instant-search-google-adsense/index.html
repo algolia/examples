@@ -1,0 +1,37 @@
+<html>
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-input" placeholder="Search for Electronic goods by name, brand, ...">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="search-stats-container">
+            <!-- Search Stats injected here -->
+          </div>
+          <div id="search-results-container">
+            <!-- Search Results injected here -->
+            <p class="bg-warning">Hint: Search for Electronic goods such as <strong>iphone</strong>, <strong>samsung tv</strong>, <strong>tablet</strong></p>
+          </div>
+          <div id="adcontainer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
