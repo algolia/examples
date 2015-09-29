@@ -2,12 +2,13 @@
 Set of sample code samples which highlight several different way to use Algolia.
 
 ## Examples list
-### Browser based
+**Browser based**
 
 * Algolia Instant Search + Google AdSense [[link]](/instant-search-google-adsense/)
 
 
-### Mobile native
+**Mobile Native**
+
 * Coming soon
 
 
