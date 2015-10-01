@@ -3,7 +3,7 @@
   <head>
     <title>Textarea autocomplete demo [Basic autocomplete] - by Algolia</title>
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Text Autcomplete plugin CSS -->
@@ -71,7 +71,7 @@
 
           // #6 - Template used to display the selected result in the textarea
           replace: function (hit) {
-            return '@' + hit.name.trim() + ' ';
+            return ' @' + hit.name.trim() + ' ';
           }
         }
       ], {
