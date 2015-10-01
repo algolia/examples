@@ -5,7 +5,7 @@ Set of sample code samples which highlight several different way to use Algolia.
 **Browser based**
 
 * Algolia Instant Search + Google AdSense [[link]](/instant-search-google-adsense/)
-
+* Autocomplete within a Textarea / input [[link]](/textarea-autocomplete/)
 
 **Mobile Native**
 
