@@ -3,7 +3,7 @@ Demos showing how an autocomplete dropdown can be integrated within a textarea (
 
 * A @mention feature where users can easily do references to people (here we are mentionning @actors), places, resources, ...
 * A #hashtag feature similar to what you can find on Twitter
-* An *'Advanced search UI'*, with dynamic refinements: [see Abacus blogpost](https://blog.algolia.com/algolia-for-realtime-expense-reporting/){:target="_blank"}
+* An *'Advanced search UI'*, with dynamic refinements: [see Abacus blogpost](https://blog.algolia.com/algolia-for-realtime-expense-reporting/)
 
 Such kind of user experience are very handy on both Desktop and Mobile website.
 
