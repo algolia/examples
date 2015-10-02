@@ -1,4 +1,4 @@
-# TextArea Autocomplete
+# Autocomplete in a Textarea
 Demos showing how an autocomplete dropdown can be integrated within a textarea (or text input), and be easily leveraged to build:
 
 * A @mention feature where users can easily do references to people (here we are mentionning @actors), places, resources, ...
