@@ -29,7 +29,9 @@ Try out the [live demo](https://demo.algolia.com/examples/textarea-autocomplete/
 
 **Autocomplete with picture & Rich HTML textarea**
 
-Try out the [live demo](https://demo.algolia.com/examples/textarea-autocomplete/full-html-textarea-autocomplete.html) / Source code in the [autocomplete-with-pictures.html](full-html-textarea-autocomplete.html) file
+Combination of all the previous versions.
+
+Try out the [live demo](https://demo.algolia.com/examples/textarea-autocomplete/full-html-textarea-autocomplete.html) / Source code in the [full-html-textarea-autocomplete.html](full-html-textarea-autocomplete.html) file
 
 ## Data Set
 List of the [500 popular actors](dataset/actors.json) extracted from themoviedb.org
