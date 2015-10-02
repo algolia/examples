@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textarea autocomplete demo [Autocomplete with pictures & Rich HTML textarea] - by Algolia</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <h3>Mention your favorite actors using the '@' key<br>
+          <small>For instance: <i>"Loved the last movie with <mark>@Tom</mark>..."</i></small>
+          </h3>
+          <div class="form-control" id="autocomplete-textarea" contenteditable="true"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+    <!-- Text Autcomplete plugin -->
+    <script src="assets/jquery.textcomplete.min.js"></script>
+    <!-- Algolia Search API Client - latest version -->
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+      // #1 - Search configuration - to replace with your own
+      var ALGOLIA_APPID = 'latency';
+      var ALGOLIA_SEARCH_APIKEY = '6be0576ff61c053d5f9a3225e2a90f76';
+      var ALGOLIA_INDEX_NAME = 'actors';
+      var NB_RESULTS_DISPLAYED = 5;
+
+      // #2- Algolia Client Initialization
+      var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY); 
+      var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
+
+      var lastQuery = '';
+      $('#autocomplete-textarea').textcomplete([
+        {
+          // #3 - Regular experession used to trigger search
+          match: /(^|\s)@(\w*(?:\s*\w*)*)$/,
+
+          // #4 - Function called at every new keystroke
+          search: function(query, callback) {
+            lastQuery = query;
+
+            index.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
+              .then(function searchSuccess(content) {
+                if (content.query === lastQuery) {
+                  callback(content.hits);
+                }
+              })
+              .catch(function searchFailure(err) {
+                console.error(err);
+              });
+          },
+
+          // #5 - Template used to display each result obtained by the Algolia API
+          template: function (hit) {
+            // Returns the highlighted version of the name attribute
+            return '<div class="picture"><img src="//image.tmdb.org/t/p/w45/'+ hit.image_path +'" /></div><span class="name">' + hit._highlightResult.name.value + '<span>';
+          },
+
+          // #6 - Template used to display the selected result in the textarea
+          replace: function (hit) {
+            var html = '<a class="tag-item" href="">';
+            html += '<div class="picture-wrapper"><img src="//image.tmdb.org/t/p/w45/'+ hit.image_path +'" /></div>';
+            html += '<span class="label">' + hit.name + '</span></a>';
+            return html;
+          }
+        }
+      ], {
+          // #7 - Special adapter to handle HTMLContentEditable divs
+          adapter: $.fn.textcomplete.HTMLContentEditable,
+          footer: '<div style="text-align: center; display: block; font-size:12px; margin: 5px 0 0 0;">Powered by <a href="http://www.algolia.com"><img src="https://www.algolia.com/assets/algolia128x40.png" style="height: 14px;" /></a></div>'
+      });
+    
+    });
+    </script>
+  </body>
+</html>

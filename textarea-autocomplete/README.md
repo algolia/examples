@@ -7,6 +7,7 @@ Demos showing how an autocomplete dropdown can be integrated within a textarea (
 
 Such kind of user experience are very handy on both Desktop and Mobile website.
 
+
 ## Demos
 **Basic autocomplete**
 
@@ -26,5 +27,9 @@ Try out the [live demo](https://demo.algolia.com/examples/textarea-autocomplete/
 
 ![Autocomplete with picture](previews/rich-html-textarea.png)
 
+**Autocomplete with picture & Rich HTML textarea**
+
+Try out the [live demo](https://demo.algolia.com/examples/textarea-autocomplete/full-html-textarea-autocomplete.html) / Source code in the [autocomplete-with-pictures.html](full-html-textarea-autocomplete.html) file
+
 ## Data Set
-List of the 500 popular actors extracted from themoviedb.org
+List of the [500 popular actors](dataset/actors.json) extracted from themoviedb.org
