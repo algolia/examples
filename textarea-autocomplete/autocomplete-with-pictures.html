@@ -6,8 +6,6 @@
     
     <!-- Bootstrap -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Text Autcomplete plugin CSS -->
-    <link rel="stylesheet" href="//raw.githubusercontent.com/yuku-t/jquery-textcomplete/master/dist/jquery.textcomplete.css">
     <link rel="stylesheet" href="assets/style.css">
 
   </head>
@@ -67,7 +65,6 @@
           // #5 - Template used to display each result obtained by the Algolia API
           template: function (hit) {
             // Returns the highlighted version of the name attribute
-            var template = '';
             return '<div class="picture"><img src="//image.tmdb.org/t/p/w45/'+ hit.image_path +'" /></div><span class="name">' + hit._highlightResult.name.value + '<span>';
           },
 
