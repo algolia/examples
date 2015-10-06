@@ -42,15 +42,19 @@
      Used in 
      autocomplete-with-pictures.html
    ------------------------------------ */
+.dropdown-menu .textcomplete-item a {
+  box-sizing: border-box;
+  height: 42px;
+}
+
 .dropdown-menu .textcomplete-item .picture {
   border-radius: 2em;
   -webkit-border-radius: 2em;
   -moz-border-radius: 2em;
-  display: inline-block;
   width: 32px;
   height: 32px;
-  position: relative;
   overflow: hidden;
+  float: left;
 }
 
   .dropdown-menu .textcomplete-item .picture img {
@@ -58,9 +62,8 @@
   }
 
 .dropdown-menu .textcomplete-item .name {
-  position: relative;
-  top: -10px;
-  left: 5px;
+  float: left;
+  margin: 5px 0 0 5px;
 }
 
 
