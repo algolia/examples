@@ -1,0 +1,169 @@
+
+
+
+/* GENERAL
+// ------------------------- */
+* {
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+body {
+	color: #646c78;
+	background-color: #222e3e;
+}
+html {
+	overflow-y: scroll;
+}
+.map_section {
+	width: 1080px;
+	margin: 40px auto 60px;
+}
+.map_section .left-column {
+	float: left;
+	width: 350px;
+}
+.map_section .right-column {
+	float: right;
+	width: 720px;
+}
+.clear-both {
+	clear: both;
+}
+
+
+
+/* HEADER
+// ------------------------- */
+header {
+	text-align: center;
+}
+header h1 {
+	font-size: 18px;
+	display: inline-block;
+	margin-right: 10px;
+	text-transform: uppercase;
+	color: #a7abb2;
+}
+header .mode_button {
+	display: inline-block;
+	margin: 2px;
+	padding: 6px 16px;
+	text-decoration: none;
+	color: #ef5362;
+	border: 1px solid #ef5362;
+}
+header .mode_button.active,
+header .mode_button:hover {
+	text-decoration: none;
+	color: #222e3e;
+	border: 1px solid #ef5362;
+	background-color: #ef5362;
+}
+header p {
+	font-size: 13px;
+	line-height: 1.5;
+	display: none;
+	max-width: 800px;
+	margin: 10px auto;
+}
+header p.active {
+	display: block;
+}
+header a.state_link {
+	max-width: 800px;
+	margin: 0 2px;
+	padding: 0 0 2px;
+	text-decoration: none;
+	color: #a7abb2;
+	border-bottom: 1px solid #a7abb2;
+}
+header a.state_link.active,
+header a:hover {
+	text-decoration: none;
+	color: #ef5362;
+	border-color: #ef5362;
+}
+
+
+
+/* HITS
+// ------------------------- */
+.hit {
+	font-size: 12px;
+	font-weight: 300;
+	margin-bottom: 3px;
+	padding: 5px 6px;
+	border: 1px solid #374352;
+}
+.hit-airport-code,
+.hit-name,
+.hit-location {
+	line-height: 1;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+.hit-airport-code {
+	font-size: 13px;
+	float: right;
+	margin-left: 10px;
+}
+.hit-airport-code,
+.hit-name {
+	font-weight: normal;
+	position: relative;
+	top: 1px;
+}
+.hit-name {
+	font-size: 12px;
+	overflow: hidden;
+	max-width: 200px;
+	padding-right: 4px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #a7abb2;
+}
+.hit-location {
+	font-size: 12px;
+	position: relative;
+	top: -1px;
+}
+#no-results-message {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border: 1px solid #374352;
+}
+#no-results-message p {
+	font-size: 28px;
+	font-weight: 100;
+	padding: 10%;
+}
+
+
+
+/* MAP
+// ------------------------- */
+#map {
+	height: 597px;
+}
+
+
+
+/* FOOTER
+// ------------------------- */
+footer {
+	font-size: 14px;
+	margin-bottom: 24px;
+	text-align: center;
+}
+footer a {
+	text-decoration: none;
+	color: #ff8584;
+}
+footer a:hover {
+	text-decoration: underline;
+	color: #ff8584;
+}
+
+
+
