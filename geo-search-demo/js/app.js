@@ -33,7 +33,6 @@ $(document).ready(function() {
     LOAD                   : 0,
     BOUNDING_BOX_RECTANGLE : 1,
     BOUNDING_BOX_POLYGON   : 2,
-    BOUNDING_BOX_UNION     : 3,
     AROUND_IP              : 4,
     AROUND_NYC             : 5,
     AROUND_LONDON          : 6,
@@ -102,9 +101,6 @@ $(document).ready(function() {
       });
       algoliaHelper.setQueryParameter('insidePolygon', polygonsToAlgoliaParams(boundingBox));
       boundingBoxListener = google.maps.event.addListener(boundingBox.getPath(), 'set_at', throttle( polygonBoundsChanged, 150 ));
-      break;
-
-      case PAGE_STATES.BOUNDING_BOX_UNION:
       break;
 
       case PAGE_STATES.AROUND_IP:
@@ -201,9 +197,6 @@ $(document).ready(function() {
       break;
       case "polygon":
       setPageState(PAGE_STATES.BOUNDING_BOX_POLYGON);
-      break;
-      case "union":
-      setPageState(PAGE_STATES.BOUNDING_BOX_UNION);
       break;
       case "ip":
       setPageState(PAGE_STATES.AROUND_IP);
