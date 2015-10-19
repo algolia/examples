@@ -136,6 +136,7 @@ $(document).ready(function() {
     if (boundingBox) boundingBox.setMap(null);
     if (boundingBoxListener) google.maps.event.removeListener(boundingBoxListener);
     algoliaHelper.setQueryParameter('insideBoundingBox', undefined);
+    algoliaHelper.setQueryParameter('insidePolygon',     undefined);
     algoliaHelper.setQueryParameter('aroundLatLng',      undefined);
     algoliaHelper.setQueryParameter('aroundPrecision',   undefined);
     algoliaHelper.setQueryParameter('aroundLatLngViaIP', undefined);
