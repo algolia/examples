@@ -75,19 +75,33 @@ $(document).ready(function() {
       case PAGE_STATES.BOUNDING_BOX_POLYGON:
       boundingBox = new google.maps.Polygon({
         paths: [
-        {lat: 25.774, lng: -80.190},
-        {lat: 18.466, lng: -66.118},
-        {lat: 32.321, lng: -64.757},
-        {lat: 25.774, lng: -80.190}
+        {lat: 42.01, lng: -124.31},
+        {lat: 42.00, lng: -120.01},
+        {lat: 39.01, lng: -120.01},
+        {lat: 35.00, lng: -114.64},
+        {lat: 36.99, lng: -114.03},
+        {lat: 36.99, lng: -109.05},
+        {lat: 31.36, lng: -109.05},
+        {lat: 31.36, lng: -111.09},
+        {lat: 32.48, lng: -114.89},
+        {lat: 32.75, lng: -114.76},
+        {lat: 32.37, lng: -121.20},
+        {lat: 40.09, lng: -125.81},
+        {lat: 42.01, lng: -125.94},
+        {lat: 42.01, lng: -124.31},
         ],
         strokeColor: '#EF5362',
         strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: '#EF5362',
         fillOpacity: 0.15,
+        draggable: true,
+        editable: true,
+        geodesic: true,
         map: map
       });
       algoliaHelper.setQueryParameter('insidePolygon', polygonsToAlgoliaParams(boundingBox));
+      boundingBoxListener = google.maps.event.addListener(boundingBox.getPath(), 'set_at', throttle( polygonBoundsChanged, 150 ));
       break;
 
       case PAGE_STATES.BOUNDING_BOX_UNION:
@@ -233,6 +247,10 @@ $(document).ready(function() {
   function rectangleBoundsChanged() {
     fitMapToMarkersAutomatically = false;
     algoliaHelper.setQueryParameter('insideBoundingBox', rectangleToAlgoliaParams(boundingBox)).search();
+  }
+  function polygonBoundsChanged() {
+    fitMapToMarkersAutomatically = false;
+    algoliaHelper.setQueryParameter('insidePolygon', polygonsToAlgoliaParams(boundingBox)).search();
   }
 
   function rectangleToAlgoliaParams(rectangle) {
