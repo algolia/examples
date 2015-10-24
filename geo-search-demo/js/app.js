@@ -56,7 +56,7 @@ $(document).ready(function() {
     switch (state) {
       case PAGE_STATES.BOUNDING_BOX_RECTANGLE:
       boundingBox = new google.maps.Rectangle({
-        bounds: { north: 40, south: 60, east: 16, west: -4 },
+        bounds: { north: 60, south: 40, east: 16, west: -4 },
         strokeColor: '#EF5362',
         strokeOpacity: 0.8,
         strokeWeight: 2,
@@ -105,22 +105,18 @@ $(document).ready(function() {
 
       case PAGE_STATES.AROUND_IP:
       algoliaHelper.setQueryParameter('aroundLatLngViaIP', true);
-      algoliaHelper.setQueryParameter('aroundPrecision', 5000);
       break;
 
       case PAGE_STATES.AROUND_NYC:
       algoliaHelper.setQueryParameter('aroundLatLng', '40.71, -74.01');
-      algoliaHelper.setQueryParameter('aroundPrecision', 5000);
       break;
 
       case PAGE_STATES.AROUND_LONDON:
       algoliaHelper.setQueryParameter('aroundLatLng', '51.50, -0.13');
-      algoliaHelper.setQueryParameter('aroundPrecision', 5000);
       break;
 
       case PAGE_STATES.AROUND_SYDNEY:
       algoliaHelper.setQueryParameter('aroundLatLng', '-33.86, 151.20');
-      algoliaHelper.setQueryParameter('aroundPrecision', 5000);
       break;
     }
 
@@ -134,7 +130,6 @@ $(document).ready(function() {
     algoliaHelper.setQueryParameter('insideBoundingBox', undefined);
     algoliaHelper.setQueryParameter('insidePolygon',     undefined);
     algoliaHelper.setQueryParameter('aroundLatLng',      undefined);
-    algoliaHelper.setQueryParameter('aroundPrecision',   undefined);
     algoliaHelper.setQueryParameter('aroundLatLngViaIP', undefined);
   }
 
