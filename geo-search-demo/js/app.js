@@ -26,7 +26,7 @@ $(document).ready(function() {
   var fitMapToMarkersAutomatically = true;
   var markers = [];
   var boundingBox;
-  var boundingBoxListener;
+  var boundingBoxListeners = [];
 
   // Page states
   var PAGE_STATES = {
@@ -68,7 +68,7 @@ $(document).ready(function() {
         map: map
       });
       algoliaHelper.setQueryParameter('insideBoundingBox', rectangleToAlgoliaParams(boundingBox));
-      boundingBoxListener = google.maps.event.addListener(boundingBox, 'bounds_changed', throttle( rectangleBoundsChanged, 150 ));
+      boundingBoxListeners.push(google.maps.event.addListener(boundingBox, 'bounds_changed', throttle( rectangleBoundsChanged, 150 )));
       break;
 
       case PAGE_STATES.BOUNDING_BOX_POLYGON:
@@ -100,7 +100,8 @@ $(document).ready(function() {
         map: map
       });
       algoliaHelper.setQueryParameter('insidePolygon', polygonsToAlgoliaParams(boundingBox));
-      boundingBoxListener = google.maps.event.addListener(boundingBox.getPath(), 'set_at', throttle( polygonBoundsChanged, 150 ));
+      boundingBoxListeners.push(google.maps.event.addListener(boundingBox.getPath(), 'set_at', throttle( polygonBoundsChanged, 150 )));
+      boundingBoxListeners.push(google.maps.event.addListener(boundingBox.getPath(), 'insert_at', throttle( polygonBoundsChanged, 150 )));
       break;
 
       case PAGE_STATES.AROUND_IP:
@@ -126,7 +127,10 @@ $(document).ready(function() {
 
   function resetPageState() {
     if (boundingBox) boundingBox.setMap(null);
-    if (boundingBoxListener) google.maps.event.removeListener(boundingBoxListener);
+    for (var i = 0; i < boundingBoxListeners.length; ++i) {
+      google.maps.event.removeListener(boundingBoxListeners[i]);
+    }
+    boundingBoxListeners = [];
     algoliaHelper.setQueryParameter('insideBoundingBox', undefined);
     algoliaHelper.setQueryParameter('insidePolygon',     undefined);
     algoliaHelper.setQueryParameter('aroundLatLng',      undefined);
@@ -152,7 +156,7 @@ $(document).ready(function() {
       return;
     }
     content.hits = content.hits.slice(0,20);
-    for (var i = 0; i<content.hits.length; ++i) {
+    for (var i = 0; i < content.hits.length; ++i) {
       var hit = content.hits[i];
       hit.displayCity = (hit.name === hit.city);
       if (hit._rankingInfo.matchedGeoLocation) hit.distance = parseInt(hit._rankingInfo.matchedGeoLocation.distance/1000) + " km";
