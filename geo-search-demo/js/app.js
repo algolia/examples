@@ -18,6 +18,7 @@ $(document).ready(function() {
   $map = $('#map');
   $hits = $('#hits');
   $stats = $('#stats');
+  $searchInput = $('#search-input');
   var hitsTemplate = Hogan.compile($('#hits-template').text());
   var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
@@ -131,11 +132,23 @@ $(document).ready(function() {
       google.maps.event.removeListener(boundingBoxListeners[i]);
     }
     boundingBoxListeners = [];
+    $searchInput.val("");
+    algoliaHelper.setQuery("");
     algoliaHelper.setQueryParameter('insideBoundingBox', undefined);
     algoliaHelper.setQueryParameter('insidePolygon',     undefined);
     algoliaHelper.setQueryParameter('aroundLatLng',      undefined);
     algoliaHelper.setQueryParameter('aroundLatLngViaIP', undefined);
   }
+
+
+
+  // TEXTUAL SEARCH
+  // ===============
+  $searchInput.on('input propertychange', function(e) {
+    var query = e.currentTarget.value;
+    if (pageState === PAGE_STATES.BOUNDING_BOX_RECTANGLE || pageState === PAGE_STATES.BOUNDING_BOX_POLYGON) fitMapToMarkersAutomatically = false;
+    algoliaHelper.setQuery(query).search();
+  });
 
 
 

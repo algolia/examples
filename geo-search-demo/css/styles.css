@@ -85,12 +85,39 @@ header a:hover {
 
 
 
+/* SEARCH INPUT
+// ------------------------- */
+#search-input {
+	font-size: 16px;
+	font-weight: 100;
+	color: #a7abb2;
+	width: 100%;
+	padding: 0 6px 6px;
+	margin-bottom: 10px;
+	border: none;
+	border-bottom: 3px solid #374352;
+	background: none;
+	box-sizing: border-box;
+}
+#search-input, #search-input:focus {
+	transition: border-color .3s ease-in;
+	outline: 0;
+}
+#search-input:focus {
+	border-color: #ed5565;
+}
+
+
 /* HITS
 // ------------------------- */
+#hits {
+	max-height: 580px;
+	overflow: hidden;
+}
 .hit {
 	font-size: 12px;
 	font-weight: 300;
-	margin-bottom: 3px;
+	margin-bottom: 2px;
 	padding: 5px 6px;
 	border: 1px solid #374352;
 }
@@ -102,10 +129,15 @@ header a:hover {
 	margin: 0;
 	padding: 0;
 }
+.hit-airport-code em,
+.hit-name em,
+.hit-location  em{
+	color: #ed5565;
+}
 .hit-airport-code {
 	font-size: 13px;
 	float: right;
-	margin-left: 10px;
+	margin-left: 6px;
 }
 .hit-airport-code,
 .hit-name {
@@ -116,7 +148,7 @@ header a:hover {
 .hit-name {
 	font-size: 12px;
 	overflow: hidden;
-	max-width: 200px;
+	max-width: 180px;
 	padding-right: 4px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -144,7 +176,7 @@ header a:hover {
 /* MAP
 // ------------------------- */
 #map {
-	height: 597px;
+	height: 614px;
 }
 
 
