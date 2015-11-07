@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <title>Keywords Suggestions Demo</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/selectize.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <!-- /CSS -->
+</head>
+<body>
+
+
+  <header>
+    <div class="header-inner">
+      <div id="input-tags">
+        <input type="text">
+      </div>
+      <div class="input-icon">
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Keywords-->
+  <section id="keywords-section">
+    <div id="keywords"></div>
+  </section>
+  <!-- /Keywords -->
+
+
+  <!-- Hits-->
+  <section>
+    <div id="hits"></div>
+  </section>
+  <!-- /Hits -->
+
+
+  <!-- Keyword template -->
+  <script type="text/template" id="keywords-template">
+    <div class="keywords">
+      <ul>
+        {{#values}}
+        <li class="{{ cssClass }}">
+          <a href="" class="keyword-link add-tag {{#isRefined}}facet-refined{{/isRefined}}" data-value="{{ name }}">{{ name }}</a>
+        </li>
+        {{/values}}
+      </ul>
+    </div>
+  </script>
+
+
+  <!-- Hit template -->
+  <script type="text/template" id="hits-template">
+    {{#hits}}
+    <div class="hit">
+      <img src="{{ images }}">
+    </div>
+    {{/hits}}
+  </script>
+  <!-- /Hit template -->
+
+
+  <!-- Javascript -->
+  <script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script src="//cdn.jsdelivr.net/hogan.js/3.0.2/hogan.min.common.js"></script>
+  <script src="js/selectize.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- /Javascript -->
+
+
+</body>
+</html>
