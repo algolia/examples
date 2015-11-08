@@ -12,6 +12,7 @@ $(document).ready(function() {
 
   // DOM and Templates binding
   var $searchInput = $("#input-tags input");
+  $searchInputIcon = $('#search-input-icon');
   var $keywords = $('#keywords');
   var $hits = $('#hits');
   var keywordsTemplate = Hogan.compile($('#keywords-template').text());
@@ -24,11 +25,9 @@ $(document).ready(function() {
     choices: null,
     delimiter: ',',
     persist: false,
-    create: function(input) {
-      return {
-        value: input,
-        text: input
-      };
+    create: true,
+    onBlur: function() {
+      toggleIconEmptyInput();
     },
     onChange: function(value) {
       selectizeKeywords = value;
@@ -44,6 +43,7 @@ $(document).ready(function() {
   // SEARCH ALL
   // ==========
   $selectize.$control_input.on('keyup', function() {
+    toggleIconEmptyInput();
     search();
   });
   function search() {
@@ -87,7 +87,7 @@ $(document).ready(function() {
         uniqueTags.push(tag);
       }
     }
-    $keywords.html(keywordsTemplate.render({ values: values.slice(0, 24) }));
+    $keywords.html(keywordsTemplate.render({ values: values.slice(0, 20) }));
   }
 
   function renderHits(content) {
@@ -103,8 +103,22 @@ $(document).ready(function() {
     $selectize.createItem($(this).data('value'), function(){});
     search();
   });
+  $searchInputIcon.on('click', function(e) {
+    e.preventDefault();
+    $selectize.clear(false);
+    $searchInput.val('').keyup().focus();
+  });
+
+
+
+  // HELPER METHODS
+  // ==============
+  function toggleIconEmptyInput() {
+    var query = $selectize.$control_input.val() + selectizeKeywords;
+    $searchInputIcon.toggleClass('empty', query.trim() !== '');
+  }
+
 
 
 
 });
-
