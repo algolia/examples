@@ -36,7 +36,7 @@ Then, you'll need to replace the demo credentials with your own:
 **Follow this [step by step tutorial](https://www.algolia.com/doc/tutorials/instant-search#) (on Algolia.com) to learn how this implementation works** and how it has been built using the [Algolia's Javascript API client](https://github.com/algolia/algoliasearch-client-js) and its [helper](https://github.com/algolia/algoliasearch-helper-js).
 
 ## Demo
-Try out the [demo](http://demos.algolia.com/instant-search-demo/)
+Try out the [demo](https://demo.algolia.com/examples/instant-search-result-page-jquery/)
 ![Instant search](instant-search.gif)
 
 ## Data Set
@@ -47,7 +47,8 @@ We've extracted 10,000 products from the [Best Buy Developer API](https://develo
 To hack and develop on this current repository:
 
 ```sh
-git clone git@github.com:algolia/instant-search-demo.git
+git clone git@github.com:algolia/examples.git
+cd instant-search-result-page-jquery
 npm install
 npm run dev
 ```
