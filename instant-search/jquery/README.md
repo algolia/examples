@@ -48,7 +48,7 @@ To hack and develop on this current repository:
 
 ```sh
 git clone git@github.com:algolia/examples.git
-cd instant-search-result-page-jquery
+cd instant-search/jquery
 npm install
 npm run dev
 ```
