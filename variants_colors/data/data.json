@@ -1,0 +1,122 @@
+[
+  {
+    "objectID": "sweatshirt-A-blue",
+    "name": "sweatshirt A blue",
+    "model": "sweatshirt-A",
+    "color": "blue",
+    "image_slug": "sweatshirt-A-blue.png",
+    "number_of_likes": 413
+  },
+  {
+    "objectID": "sweatshirt-A-red",
+    "name": "sweatshirt A red",
+    "model": "sweatshirt-A",
+    "color": "red",
+    "image_slug": "sweatshirt-A-red.png",
+    "number_of_likes": 160
+  },
+  {
+    "objectID": "sweatshirt-B-green",
+    "name": "sweatshirt B green",
+    "model": "sweatshirt-B",
+    "color": "green",
+    "image_slug": "sweatshirt-B-green.png",
+    "number_of_likes": 64
+  },
+  {
+    "objectID": "tshirt-A-blue",
+    "name": "tshirt A blue",
+    "model": "tshirt-A",
+    "color": "blue",
+    "image_slug": "tshirt-A-blue.png",
+    "number_of_likes": 952
+  },
+  {
+    "objectID": "tshirt-A-green",
+    "name": "tshirt A green",
+    "model": "tshirt-A",
+    "color": "green",
+    "image_slug": "tshirt-A-green.png",
+    "number_of_likes": 228
+  },
+  {
+    "objectID": "tshirt-A-orange",
+    "name": "tshirt A orange",
+    "model": "tshirt-A",
+    "color": "orange",
+    "image_slug": "tshirt-A-orange.png",
+    "number_of_likes": 829
+  },
+  {
+    "objectID": "tshirt-A-red",
+    "name": "tshirt A red",
+    "model": "tshirt-A",
+    "color": "red",
+    "image_slug": "tshirt-A-red.png",
+    "number_of_likes": 167
+  },
+  {
+    "objectID": "tshirt-A-teal",
+    "name": "tshirt A teal",
+    "model": "tshirt-A",
+    "color": "teal",
+    "image_slug": "tshirt-A-teal.png",
+    "number_of_likes": 866
+  },
+  {
+    "objectID": "tshirt-A-yellow",
+    "name": "tshirt A yellow",
+    "model": "tshirt-A",
+    "color": "yellow",
+    "image_slug": "tshirt-A-yellow.png",
+    "number_of_likes": 249
+  },
+  {
+    "objectID": "tshirt-B-blue",
+    "name": "tshirt B blue",
+    "model": "tshirt-B",
+    "color": "blue",
+    "image_slug": "tshirt-B-blue.png",
+    "number_of_likes": 32
+  },
+  {
+    "objectID": "tshirt-B-green",
+    "name": "tshirt B green",
+    "model": "tshirt-B",
+    "color": "green",
+    "image_slug": "tshirt-B-green.png",
+    "number_of_likes": 34
+  },
+  {
+    "objectID": "tshirt-B-orange",
+    "name": "tshirt B orange",
+    "model": "tshirt-B",
+    "color": "orange",
+    "image_slug": "tshirt-B-orange.png",
+    "number_of_likes": 365
+  },
+  {
+    "objectID": "tshirt-B-red",
+    "name": "tshirt B red",
+    "model": "tshirt-B",
+    "color": "red",
+    "image_slug": "tshirt-B-red.png",
+    "number_of_likes": 334
+  },
+  {
+    "objectID": "tshirt-B-teal",
+    "name": "tshirt B teal",
+    "model": "tshirt-B",
+    "color": "teal",
+    "image_slug": "tshirt-B-teal.png",
+    "number_of_likes": 452
+  },
+  {
+    "objectID": "tshirt-B-yellow",
+    "name": "tshirt B yellow",
+    "model": "tshirt-B",
+    "color": "yellow",
+    "image_slug": "tshirt-B-yellow.png",
+    "number_of_likes": 147
+  }
+]
