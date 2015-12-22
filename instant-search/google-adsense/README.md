@@ -1,5 +1,5 @@
 # Algolia Instant Search + Google AdSense
-Demo showing how [Google AdSense](https://developers.google.com/custom-search-ads/) can be easily be integrated to an Instant Search implementation built using [Algolia](http://www.google.com).
+Demo showing how [Google AdSense](https://developers.google.com/custom-search-ads/) can easily be integrated to an Instant Search implementation built using [Algolia](http://www.google.com).
 
 ## Demo
 Try out the [demo](https://demo.algolia.com/examples/instant-search-google-adsense/) 
