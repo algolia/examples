@@ -7,7 +7,7 @@ require 'json'
 ####
 #### RETRIEVE FILES
 ####
-files = Dir.entries("./images").select {|f| !File.directory? f} - [".DS_Store"]
+files = Dir.entries("../images").select {|f| !File.directory? f} - [".DS_Store"]
 
 
 

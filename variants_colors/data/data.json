@@ -1,27 +1,27 @@
 [
   {
-    "objectID": "sweatshirt-A-blue",
-    "name": "sweatshirt A blue",
-    "model": "sweatshirt-A",
+    "objectID": "sweatshirt-C-blue",
+    "name": "sweatshirt C blue",
+    "model": "sweatshirt-C",
     "color": "blue",
-    "image_slug": "sweatshirt-A-blue.png",
-    "number_of_likes": 413
+    "image_slug": "sweatshirt-C-blue.png",
+    "number_of_likes": 684
   },
   {
-    "objectID": "sweatshirt-A-red",
-    "name": "sweatshirt A red",
-    "model": "sweatshirt-A",
+    "objectID": "sweatshirt-C-red",
+    "name": "sweatshirt C red",
+    "model": "sweatshirt-C",
     "color": "red",
-    "image_slug": "sweatshirt-A-red.png",
-    "number_of_likes": 160
+    "image_slug": "sweatshirt-C-red.png",
+    "number_of_likes": 629
   },
   {
-    "objectID": "sweatshirt-B-green",
-    "name": "sweatshirt B green",
-    "model": "sweatshirt-B",
+    "objectID": "sweatshirt-D-green",
+    "name": "sweatshirt D green",
+    "model": "sweatshirt-D",
     "color": "green",
-    "image_slug": "sweatshirt-B-green.png",
-    "number_of_likes": 64
+    "image_slug": "sweatshirt-D-green.png",
+    "number_of_likes": 186
   },
   {
     "objectID": "tshirt-A-blue",
@@ -29,7 +29,7 @@
     "model": "tshirt-A",
     "color": "blue",
     "image_slug": "tshirt-A-blue.png",
-    "number_of_likes": 952
+    "number_of_likes": 211
   },
   {
     "objectID": "tshirt-A-green",
@@ -37,7 +37,7 @@
     "model": "tshirt-A",
     "color": "green",
     "image_slug": "tshirt-A-green.png",
-    "number_of_likes": 228
+    "number_of_likes": 27
   },
   {
     "objectID": "tshirt-A-orange",
@@ -45,7 +45,7 @@
     "model": "tshirt-A",
     "color": "orange",
     "image_slug": "tshirt-A-orange.png",
-    "number_of_likes": 829
+    "number_of_likes": 759
   },
   {
     "objectID": "tshirt-A-red",
@@ -53,7 +53,7 @@
     "model": "tshirt-A",
     "color": "red",
     "image_slug": "tshirt-A-red.png",
-    "number_of_likes": 167
+    "number_of_likes": 638
   },
   {
     "objectID": "tshirt-A-teal",
@@ -61,7 +61,7 @@
     "model": "tshirt-A",
     "color": "teal",
     "image_slug": "tshirt-A-teal.png",
-    "number_of_likes": 866
+    "number_of_likes": 533
   },
   {
     "objectID": "tshirt-A-yellow",
@@ -69,7 +69,7 @@
     "model": "tshirt-A",
     "color": "yellow",
     "image_slug": "tshirt-A-yellow.png",
-    "number_of_likes": 249
+    "number_of_likes": 124
   },
   {
     "objectID": "tshirt-B-blue",
@@ -77,7 +77,7 @@
     "model": "tshirt-B",
     "color": "blue",
     "image_slug": "tshirt-B-blue.png",
-    "number_of_likes": 32
+    "number_of_likes": 91
   },
   {
     "objectID": "tshirt-B-green",
@@ -85,7 +85,7 @@
     "model": "tshirt-B",
     "color": "green",
     "image_slug": "tshirt-B-green.png",
-    "number_of_likes": 34
+    "number_of_likes": 349
   },
   {
     "objectID": "tshirt-B-orange",
@@ -93,7 +93,7 @@
     "model": "tshirt-B",
     "color": "orange",
     "image_slug": "tshirt-B-orange.png",
-    "number_of_likes": 365
+    "number_of_likes": 910
   },
   {
     "objectID": "tshirt-B-red",
@@ -101,7 +101,7 @@
     "model": "tshirt-B",
     "color": "red",
     "image_slug": "tshirt-B-red.png",
-    "number_of_likes": 334
+    "number_of_likes": 410
   },
   {
     "objectID": "tshirt-B-teal",
@@ -109,7 +109,7 @@
     "model": "tshirt-B",
     "color": "teal",
     "image_slug": "tshirt-B-teal.png",
-    "number_of_likes": 452
+    "number_of_likes": 897
   },
   {
     "objectID": "tshirt-B-yellow",
@@ -117,6 +117,6 @@
     "model": "tshirt-B",
     "color": "yellow",
     "image_slug": "tshirt-B-yellow.png",
-    "number_of_likes": 147
+    "number_of_likes": 723
   }
 ]
