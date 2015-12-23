@@ -6,12 +6,11 @@ $(document).ready(function() {
   // ==============
 
   // Replace with your own values
-  var APPLICATION_ID = '65YSYSNYHU';
-  var SEARCH_ONLY_API_KEY = '0d356ed6cdf6bc50c6289fa51d48d77d';
+  var APPLICATION_ID = '82HCPITA4Q';
+  var SEARCH_ONLY_API_KEY = '9f01624e64cb5d44bc7be568773a79a0';
   var INDEX_NAME = 'variants_color';
   var PARAMS = {
-    hitsPerPage: 20,
-    facets: ["color"]
+    hitsPerPage: 20
   };
 
   // Client + Helper initialization
@@ -55,8 +54,6 @@ $(document).ready(function() {
   });
 
   // Initial search
-  algoliaHelper.toggleRefine("color", "-oieartyazoeiury");
-  // algoliaHelper.setQueryParameter('distinct', 2);
   algoliaHelper.search();
 
 
