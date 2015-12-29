@@ -4,7 +4,6 @@
   "description": "An example of using Aglolia's instantsearch.js to build infinite scroll results.",
   "main": "",
   "scripts": {
-    "serve": "webpack-dev-server --content-base build/"
   },
   "keywords": [
     "algolia",
@@ -12,9 +11,15 @@
   ],
   "author": "Algolia",
   "devDependencies": {
+    "algoliasearch": "^3.10.2",
     "async": "^1.5.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^0.9.1",
     "html-webpack-plugin": "^1.7.0",
+    "image-webpack-loader": "^1.6.2",
     "lodash": "^3.10.1",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.9"
   },
   "dependencies": {
