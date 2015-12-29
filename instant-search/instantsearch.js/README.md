@@ -21,8 +21,8 @@ This is a sample project implementing an instant-search based e-commerce website
 
 We've included some credentials in the code allowing you to test the demo without any Algolia account. If you want to replicate this demo using your own Algolia credentials, you can use the ```push.rb``` script to send the data and configure the indices.
 
-```
-./push.rb YourApplicationID YourAPIKey YourIndexName
+```sh
+$ ./push.rb YourApplicationID YourAPIKey YourIndexName
 ```
 
 Then, you'll need to replace the demo credentials with your own:
@@ -47,7 +47,7 @@ We've extracted 10,000 products from the [Best Buy Developer API](https://develo
 To hack and develop on this current repository:
 
 ```sh
-git clone git@github.com:algolia/instant-search-demo.git
-npm install
-npm run dev
+$ git clone git@github.com:algolia/instant-search-demo.git
+$ npm install
+$ npm run dev
 ```
