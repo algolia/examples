@@ -36,11 +36,14 @@ default_settings = {
   minWordSizefor1Typo: 3,
   minWordSizefor2Typos: 7
 }
+
 index_settings = default_settings.clone
 index_settings["ignorePlurals"] = true
 index_settings["slaves"] = ["#{INDEX_BASE}_price_desc", "#{INDEX_BASE}_price_asc"]
+
 price_desc_settings = default_settings.clone
 price_desc_settings["ranking"] = ["desc(price)", "typo", "geo", "words", "proximity", "attribute", "exact", "custom"]
+
 price_asc_settings = default_settings.clone
 price_asc_settings["ranking"] = ["asc(price)", "typo", "geo", "words", "proximity", "attribute", "exact", "custom"]
 
