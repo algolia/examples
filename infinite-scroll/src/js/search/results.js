@@ -6,6 +6,9 @@ module.exports = function(opts) {
     appId: opts.appId,
     apiKey: opts.apiKey,
     indexName: opts.indexName,
+    searchParameters: {
+      attributesToSnippet: 'name:9'
+    },
     urlSync: {
       useHash: true
     }

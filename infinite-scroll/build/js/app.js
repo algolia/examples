@@ -85,6 +85,9 @@
 	    appId: opts.appId,
 	    apiKey: opts.apiKey,
 	    indexName: opts.indexName,
+	    searchParameters: {
+	      attributesToSnippet: 'name:9'
+	    },
 	    urlSync: {
 	      useHash: true
 	    }
@@ -44259,7 +44262,7 @@
 	    }),
 	    instantsearch.widgets.hits({
 	      container: '#hits',
-	      hitsPerPage: 100,
+	      hitsPerPage: 25,
 	      templates: {
 	        item: getTemplate('hit'),
 	        empty: getTemplate('no-results')

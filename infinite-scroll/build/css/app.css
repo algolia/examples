@@ -96,6 +96,7 @@ header img {
   margin: 4px 0;
   padding: 10px 0;
   border-top: 2px solid #eee;
+  text-align: center;
 }
 
 .ais-hits--item {
@@ -103,16 +104,22 @@ header img {
 }
 
 .hit {
-  font-size: 0;
   padding: 8px 0;
   display: inline-block;
-  width: 144px;
-  text-align: center;
+  margin: 10px 5px;
+  width: 134px;
 }
 
 .hit img {
-  max-width: 100%;
-  max-height: 180px;
+  width: 134px;
+  height: 134px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.hit p.name {
+  height: 36px;
+  overflow: hidden;
 }
 
 
