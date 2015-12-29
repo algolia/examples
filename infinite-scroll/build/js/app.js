@@ -92,7 +92,7 @@
 
 	  var widgets = createWidgets(opts.indexName);
 
-	  widgets.forEach(search.addWidget, search);
+	  widgets.forEach(function(widget){ search.addWidget(widget); });
 	  search.start();
 	}
 
@@ -44259,7 +44259,7 @@
 	    }),
 	    instantsearch.widgets.hits({
 	      container: '#hits',
-	      hitsPerPage: 10,
+	      hitsPerPage: 100,
 	      templates: {
 	        item: getTemplate('hit'),
 	        empty: getTemplate('no-results')

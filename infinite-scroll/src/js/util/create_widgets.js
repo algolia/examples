@@ -9,7 +9,7 @@ module.exports = function(indexName) {
     }),
     instantsearch.widgets.hits({
       container: '#hits',
-      hitsPerPage: 10,
+      hitsPerPage: 100,
       templates: {
         item: getTemplate('hit'),
         empty: getTemplate('no-results')

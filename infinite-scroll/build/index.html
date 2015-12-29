@@ -32,14 +32,9 @@
 
   <script type="text/html" id="hit-template">
     <div class="hit">
-      <div class="hit-image">
+      <a href="{{url}}">
         <img src="{{image}}" alt="{{name}}">
-      </div>
-      <div class="hit-content">
-        <h3 class="hit-price">${{price}}</h3>
-        <h2 class="hit-name">{{{_highlightResult.name.value}}}</h2>
-        <p class="hit-description">{{{_highlightResult.description.value}}}</p>
-      </div>
+      </a>
     </div>
   </script>
 

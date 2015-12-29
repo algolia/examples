@@ -13,6 +13,6 @@ module.exports = function(opts) {
 
   var widgets = createWidgets(opts.indexName);
 
-  widgets.forEach(search.addWidget, search);
+  widgets.forEach(function(widget){ search.addWidget(widget); });
   search.start();
 }

@@ -98,51 +98,23 @@ header img {
   border-top: 2px solid #eee;
 }
 
+.ais-hits--item {
+  display: inline;
+}
+
 .hit {
   font-size: 0;
   padding: 8px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.hit-image {
   display: inline-block;
-  width: 16%;
+  width: 144px;
+  text-align: center;
 }
 
-.hit-image img {
+.hit img {
   max-width: 100%;
   max-height: 180px;
 }
 
-.hit-content {
-  font-size: 13px;
-  font-weight: 300;
-  display: inline-block;
-  width: 83%;
-  margin-left: 1%;
-  vertical-align: top;
-}
-
-.hit-content .hit-price {
-  font-size: 20px;
-  float: right;
-  margin-left: 20px;
-  color: #ed5565;
-}
-
-.hit-content .hit-price, .hit-content .hit-name {
-  font-weight: normal;
-  margin-top: 0;
-}
-
-.hit-content em {
-  font-style: normal;
-  background: #fbdde0;
-}
-
-.hit-content .hit-description {
-  color: #999;
-}
 
 /* SORT BY */
 #sort-by-wrapper {
