@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infinite Scroll Instant Search Example</title>
+  <meta name="description" content="Example of an infinite scroll implementation using Algolia's instantsearch.js">
+  <!--[if lte IE 9]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/0/instantsearch.min.css">
+<link href="css/app.css" rel="stylesheet"></head>
+<body>
+  <header>
+    <a href="/"><img src="img/instant_search_logo@2x.png"/></a>
+    <input id="search-input" type="text" placeholder="Search for products"/>
+    <div id="search-input-icon"></div>
+  </header>
+
+  <main>
+    <div id="left-column">
+      <div id="category" class="facet"></div>
+      <div id="brand" class="facet"></div>
+      <div id="price" class="facet"></div>
+      <div id="type" class="facet"></div>
+    </div>
+
+    <div id="right-column">
+      <div id="sort-by-wrapper"><span id="sort-by"></span></div>
+      <div id="stats"></div>
+      <div id="hits"></div>
+    </div>
+  </main>
+
+  <script type="text/html" id="hit-template">
+    <div class="hit">
+      <div class="hit-image">
+        <img src="{{image}}" alt="{{name}}">
+      </div>
+      <div class="hit-content">
+        <h3 class="hit-price">${{price}}</h3>
+        <h2 class="hit-name">{{{_highlightResult.name.value}}}</h2>
+        <p class="hit-description">{{{_highlightResult.description.value}}}</p>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/html" id="no-results-template">
+    <div id="no-results-message">
+      <p>We didn&rsquo;t find any results for the search <em>"{{query}}"</em>.</p>
+      <ul>
+        {{#filters}}
+        <li class="{{class}}" data-facet="{{facet}}" data-value="{{facet_value}}">
+          {{label}}<span class="value">{{label_value}}</span><a class="remove"><img src="img/delete_icon.png"/></a>
+        </li>
+        {{/filters}}
+        <br>
+        <a href="." class='clear-all'>Clear all</a>
+      </ul>
+    </div>
+  </script>
+<script src="js/app.js"></script></body>
+</html>
