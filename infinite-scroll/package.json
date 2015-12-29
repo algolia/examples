@@ -12,7 +12,9 @@
   ],
   "author": "Algolia",
   "devDependencies": {
+    "async": "^1.5.0",
     "html-webpack-plugin": "^1.7.0",
+    "lodash": "^3.10.1",
     "webpack": "^1.12.9"
   },
   "dependencies": {
