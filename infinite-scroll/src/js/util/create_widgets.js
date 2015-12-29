@@ -1,4 +1,5 @@
-var getTemplate = require('./get_template.js')
+var instantsearch = require('instantsearch.js')
+  , getTemplate = require('./get_template.js')
   , header = require('./header.js');
 
 module.exports = function(indexName) {

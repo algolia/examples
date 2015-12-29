@@ -44248,7 +44248,8 @@
 /* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getTemplate = __webpack_require__(443)
+	var instantsearch = __webpack_require__(9)
+	  , getTemplate = __webpack_require__(443)
 	  , header = __webpack_require__(444);
 
 	module.exports = function(indexName) {
