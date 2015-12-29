@@ -13,6 +13,9 @@ if ARGV.length != 3
   exit 1
 end
 
+APPLICATION_ID = ARGV[0]
+API_KEY = ARGV[1]
+INDEX_BASE = ARGV[2]
 
 ####
 #### LOAD DATA
@@ -23,8 +26,8 @@ products = JSON.parse File.read("data.json")
 ####
 #### ALGOLIA INIT & CONFIGURATION
 ####
-Algolia.init :application_id => ARGV[0], :api_key => ARGV[1]
-index = Algolia::Index.new(ARGV[2])
+Algolia.init :application_id => APPLICATION_ID, :api_key => API_KEY
+index = Algolia::Index.new(INDEX_BASE)
 
 default_settings = {
   attributesToIndex: ['brand', 'name', 'categories', 'hierarchicalCategories', 'unordered(description)'],
@@ -35,15 +38,15 @@ default_settings = {
 }
 index_settings = default_settings.clone
 index_settings["ignorePlurals"] = true
-index_settings["slaves"] = ["#{ARGV[2]}_price_desc", "#{ARGV[2]}_price_asc"]
+index_settings["slaves"] = ["#{INDEX_BASE}_price_desc", "#{INDEX_BASE}_price_asc"]
 price_desc_settings = default_settings.clone
 price_desc_settings["ranking"] = ["desc(price)", "typo", "geo", "words", "proximity", "attribute", "exact", "custom"]
 price_asc_settings = default_settings.clone
 price_asc_settings["ranking"] = ["asc(price)", "typo", "geo", "words", "proximity", "attribute", "exact", "custom"]
 
 index.set_settings(index_settings)
-Algolia::Index.new("#{ARGV[2]}_price_desc").set_settings(price_desc_settings)
-Algolia::Index.new("#{ARGV[2]}_price_asc").set_settings(price_asc_settings)
+Algolia::Index.new("#{INDEX_BASE}_price_desc").set_settings(price_desc_settings)
+Algolia::Index.new("#{INDEX_BASE}_price_asc").set_settings(price_asc_settings)
 
 
 ####
@@ -53,5 +56,3 @@ index.clear
 products.each_slice(1000) do |batch|
 	index.add_objects batch
 end
-
-
