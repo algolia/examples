@@ -110,6 +110,10 @@ header img {
   width: 134px;
 }
 
+.hit a {
+  text-decoration: none;
+}
+
 .hit img {
   width: 134px;
   height: 134px;
@@ -120,6 +124,13 @@ header img {
 .hit p.name {
   height: 36px;
   overflow: hidden;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+}
+
+.hit em {
+  background: rgb(251, 221, 224);
+  font-style: normal;
 }
 
 
