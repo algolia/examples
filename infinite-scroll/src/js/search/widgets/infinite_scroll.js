@@ -24,7 +24,7 @@ var infiniteScrollWidget = function(options) {
           if(!loading && page < nbPages - 1) {
             loading = true;
             page += 1;
-            helper.setCurrentPage(page).searchOnce({}, function(err, res, state){
+            helper.searchOnce({page: page}, function(err, res, state){
               page = res.page;
               _.assign(res, {pageNo: page + 1});
               loading = false;
