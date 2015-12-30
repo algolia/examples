@@ -6,6 +6,7 @@ var infiniteScrollWidget = function(options) {
   var container = document.querySelector(options.container);
   var options = options;
   var templates = options.templates;
+  var loading = false;
 
   if (!container) {
     throw new Error('infiniteScroll: cannot select \'' + options.container + '\'');
@@ -15,8 +16,29 @@ var infiniteScrollWidget = function(options) {
     render: function(args) {
       var helper = args.helper;
       var page = args.state.page;
-      var offset = args.state.offset;
+      var nbPages = args.results.nbPages;
       var parent = document.createElement('div');
+
+      var addNewRecords = function(){
+        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
+          if(!loading && page < nbPages - 1) {
+            loading = true;
+            page += 1;
+            helper.setCurrentPage(page).searchOnce({}, function(err, res, state){
+              page = res.page;
+              _.assign(res, {pageNo: page + 1});
+              loading = false;
+              result = document.createElement('div');
+              result.innerHTML = Mustache.render(templates.items, res);
+              container.appendChild(result);
+
+              if(page === nbPages - 1){
+                window.removeEventListener('scroll', addNewRecords);
+              }
+            });
+          }
+        }
+      };
 
       if(args.results.nbHits) {
         _.assign(args.results, {pageNo: page + 1});
@@ -28,6 +50,8 @@ var infiniteScrollWidget = function(options) {
           helper.clearRefinements().setQuery('').search();
         });
       }
+
+      window.addEventListener('scroll', addNewRecords);
 
       container.innerHTML = '';
       return container.appendChild(parent);

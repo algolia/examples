@@ -132,6 +132,10 @@ header img {
   font-style: normal;
 }
 
+.page-no {
+  text-align: right;
+}
+
 
 /* SORT BY */
 #sort-by-wrapper {
