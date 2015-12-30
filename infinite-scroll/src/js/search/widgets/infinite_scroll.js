@@ -51,6 +51,8 @@ var infiniteScrollWidget = function(options) {
         });
       }
 
+      if(window.innerHeight > document.body.clientHeight) { addNewRecords(); }
+
       window.addEventListener('scroll', addNewRecords);
 
       container.innerHTML = '';

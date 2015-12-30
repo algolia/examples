@@ -44365,7 +44365,6 @@
 	      var addNewRecords = function(){
 	        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
 	          if(!loading && page < nbPages - 1) {
-	            console.log(page);
 	            loading = true;
 	            page += 1;
 	            helper.setCurrentPage(page).searchOnce({}, function(err, res, state){
@@ -44394,6 +44393,8 @@
 	          helper.clearRefinements().setQuery('').search();
 	        });
 	      }
+
+	      if(window.innerHeight > document.body.clientHeight) { addNewRecords(); }
 
 	      window.addEventListener('scroll', addNewRecords);
 
