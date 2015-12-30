@@ -16,13 +16,14 @@
     "extract-text-webpack-plugin": "^0.9.1",
     "html-webpack-plugin": "^1.7.0",
     "image-webpack-loader": "^1.6.2",
-    "lodash": "^3.10.1",
-    "mustache": "^2.2.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9"
   },
   "dependencies": {
-    "instantsearch.js": "^1.1.0"
+    "instantsearch.js": "^1.1.0",
+    "lodash": "^3.10.1",
+    "mustache": "^2.2.1",
+    "jquery": "^2.1.4"
   }
 }
