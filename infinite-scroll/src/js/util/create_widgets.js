@@ -1,19 +1,12 @@
 var instantsearch = require('instantsearch.js')
   , getTemplate = require('./get_template.js')
-  , header = require('./header.js');
+  , header = require('./header.js')
+  , infiniteScrollWidget = require('../search/widgets/infinite_scroll.js');
 
 module.exports = function(indexName) {
   return [
     instantsearch.widgets.searchBox({
       container: '#search-input'
-    }),
-    instantsearch.widgets.hits({
-      container: '#hits',
-      hitsPerPage: 25,
-      templates: {
-        item: getTemplate('hit'),
-        empty: getTemplate('no-results')
-      }
     }),
     instantsearch.widgets.stats({
       container: '#stats'
@@ -60,6 +53,13 @@ module.exports = function(indexName) {
       limit: 10,
       templates: {
         header: header('Type')
+      }
+    }),
+    infiniteScrollWidget({
+      container: '#hits',
+      templates: {
+        items: getTemplate('hits'),
+        empty: getTemplate('no-results')
       }
     })
   ];
