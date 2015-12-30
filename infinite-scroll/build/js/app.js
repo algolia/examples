@@ -44362,9 +44362,8 @@
 	      var parent = document.createElement('div');
 
 	      if(args.results.nbHits) {
-	        var props = _.assign(args.results, {pageNo: 1});
-	        console.log(args)
-	        parent.innerHTML = Mustache.render(templates.items, props);
+	        _.assign(args.results, {pageNo: page + 1});
+	        parent.innerHTML = Mustache.render(templates.items, args.results);
 	      } else {
 	        parent.innerHTML = Mustache.render(templates.empty, args.results);
 	        parent.querySelector('.clear-all').addEventListener('click', function(e){
