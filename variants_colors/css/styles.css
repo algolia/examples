@@ -128,6 +128,8 @@ main {
 .hit-content .hit-name {
 	font-weight: normal;
 	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 16px;
 }
 .hit-content em {
 	font-style: normal;
@@ -135,6 +137,7 @@ main {
 }
 .hit-content .hit-likes {
 	color: #999;
+	margin-top: 0;
 }
 
 

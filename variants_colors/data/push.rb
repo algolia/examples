@@ -31,7 +31,7 @@ products = JSON.parse File.read("data.json")
 Algolia.init :application_id => APP_ID, :api_key => API_KEY
 index = Algolia::Index.new INDEX_NAME
 index.set_settings({
-    attributesToIndex: ['name'],
+    attributesToIndex: ['model', 'name', 'color'],
     customRanking: ['desc(number_of_likes)'],
     attributeForDistinct: "model"
     })

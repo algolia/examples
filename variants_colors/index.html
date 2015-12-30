@@ -49,7 +49,7 @@
 
   <!-- Footer -->
   <footer>
-    Source Code on <a href="http://github.com/algolia/examples/variants-colors/">Github</a> -
+    Source Code on <a href="https://github.com/algolia/examples/tree/master/variants_colors">Github</a> -
     Powered by <a href="http://algolia.com">Algolia</a>
   </footer>
   <!-- /Footer -->
@@ -64,8 +64,8 @@
         <img src="./images/{{ image_slug }}" alt="{{ name }}">
       </div>
       <div class="hit-content">
-        <h2 class="hit-name">{{{ _highlightResult.name.value }}}</h2>
-        <p class="hit-likes">Number of likes: {{ number_of_likes }}</p>
+        <h2 class="hit-name">{{{ _highlightResult.name.value }}} {{{ _highlightResult.model.value }}} {{{ _highlightResult.color.value }}}</h2>
+        <p class="hit-likes"><img width="16" src="./img/likes.png" style="position: relative; top: 2px"> {{ number_of_likes }}</p>
       </div>
     </div>
     {{/hits}}

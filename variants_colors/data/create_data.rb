@@ -16,11 +16,11 @@ files = Dir.entries("../images").select {|f| !File.directory? f} - [".DS_Store"]
 ####
 records = []
 files.each do |f|
-    type, model, color = f.gsub(".png", "").split("-")
+    name, model, color = f.gsub(".png", "").split("-")
     records << {
-        objectID: "#{type}-#{model}-#{color}",
-        name: "#{type} #{model} #{color}",
-        model: "#{type}-#{model}",
+        objectID: "#{name}-#{model}-#{color}",
+        name: name,
+        model: model,
         color: color,
         image_slug: f,
         number_of_likes: Random.rand(1000),

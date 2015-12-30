@@ -6,8 +6,8 @@ $(document).ready(function() {
   // ==============
 
   // Replace with your own values
-  var APPLICATION_ID = '82HCPITA4Q';
-  var SEARCH_ONLY_API_KEY = '9f01624e64cb5d44bc7be568773a79a0';
+  var APPLICATION_ID = 'latency';
+  var SEARCH_ONLY_API_KEY = '6be0576ff61c053d5f9a3225e2a90f76';
   var INDEX_NAME = 'variants_color';
   var PARAMS = {
     hitsPerPage: 20
