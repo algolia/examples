@@ -44394,12 +44394,14 @@
 	        });
 	      }
 
-	      if(window.innerHeight > document.body.clientHeight) { addNewRecords(); }
-
 	      window.addEventListener('scroll', addNewRecords);
 
 	      container.innerHTML = '';
-	      return container.appendChild(parent);
+	      ontainer.appendChild(parent);
+
+	      if(window.innerHeight > document.body.clientHeight) {
+	        addNewRecords();
+	      }
 	    }
 	  }
 	};
