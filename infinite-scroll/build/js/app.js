@@ -44359,6 +44359,7 @@
 	    render: function(args) {
 	      var helper = args.helper;
 	      var page = args.state.page;
+	      console.log(page);
 	      var nbPages = args.results.nbPages;
 	      var parent = document.createElement('div');
 
@@ -44397,7 +44398,7 @@
 	      window.addEventListener('scroll', addNewRecords);
 
 	      container.innerHTML = '';
-	      ontainer.appendChild(parent);
+	      container.appendChild(parent);
 
 	      if(window.innerHeight > document.body.clientHeight) {
 	        addNewRecords();

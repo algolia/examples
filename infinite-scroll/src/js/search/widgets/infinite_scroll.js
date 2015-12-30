@@ -54,7 +54,7 @@ var infiniteScrollWidget = function(options) {
       window.addEventListener('scroll', addNewRecords);
 
       container.innerHTML = '';
-      ontainer.appendChild(parent);
+      container.appendChild(parent);
 
       if(window.innerHeight > document.body.clientHeight) {
         addNewRecords();
