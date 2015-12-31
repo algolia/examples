@@ -32,14 +32,23 @@
 
   <script type="text/html" id="hits-template">
     <div class="hits">
-      <div class="page-no">
-        Page {{pageNo}}
-      </div>
+      {{#pageNo}}
+        <div class="page-no">
+          Page {{pageNo}}
+        </div>
+      {{/pageNo}}
       {{#hits}}
         <div class="hit">
           <a href="{{url}}">
             <img src="{{image}}" alt="{{name}}">
-            <p class="name">{{{_snippetResult.name.value}}}</p>
+            <p class="name">
+              {{#_snippetResult}}
+                {{{_snippetResult.name.value}}}
+              {{/_snippetResult}}
+              {{^_snippetResult}}
+                {{name}}
+              {{/_snippetResult}}
+            </p>
           </a>
         </div>
       {{/hits}}

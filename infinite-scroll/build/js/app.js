@@ -44359,9 +44359,10 @@
 	    render: function(args) {
 	      var helper = args.helper;
 	      var page = args.state.page;
-	      console.log(page);
 	      var nbPages = args.results.nbPages;
 	      var parent = document.createElement('div');
+
+	      debugger
 
 	      var addNewRecords = function(){
 	        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
@@ -44376,8 +44377,10 @@
 	              result.innerHTML = Mustache.render(templates.items, res);
 	              container.appendChild(result);
 
-	              if(page === nbPages - 1){
-	                window.removeEventListener('scroll', addNewRecords);
+	              console.log(args.results);
+
+	              if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
+	                debugger
 	              }
 	            });
 	          }

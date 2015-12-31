@@ -43,13 +43,49 @@ var infiniteScrollWidget = function(options) {
               result.innerHTML = Mustache.render(templates.items, res);
               container.appendChild(result);
 
-              if(page === nbPages - 1){
+              if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
+                index = helper.client.initIndex(args.state.index);
                 window.removeEventListener('scroll', addNewRecords);
+                window.addEventListener('scroll', browseNewRecords);
+                addBrowsedRecords();
               }
             });
           }
         }
       };
+
+      var browseNewRecords = function(){
+        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
+          if(!loading) {
+            addBrowsedRecords();
+          }
+        }
+      }
+
+      var addBrowsedRecords = function(){
+        loading = true;
+        if(!cursor) {
+          index.browse(args.state.query, {page: 0, hitsPerPage: 20}, function(err, res){
+            cursor = res.cursor;
+
+            result = document.createElement('div');
+            result.innerHTML = Mustache.render(templates.items, res);
+            container.appendChild(result);
+
+            loading = false;
+          });
+        } else {
+          index.browseFrom(cursor, function(err, res){
+            cursor = res.cursor;
+
+            result = document.createElement('div');
+            result.innerHTML = Mustache.render(templates.items, res);
+            container.appendChild(result);
+
+            loading = false;
+          });
+        }
+      }
 
       if(args.results.nbHits) {
         _.assign(args.results, {pageNo: page + 1});
