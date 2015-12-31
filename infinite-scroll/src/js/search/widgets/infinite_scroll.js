@@ -2,6 +2,11 @@ var instantsearch = require('instantsearch.js')
   , Mustache = require('mustache')
   , _ = require('lodash');
 
+var cursor;
+var index;
+var page;
+var nbPages;
+
 var infiniteScrollWidget = function(options) {
   var container = document.querySelector(options.container);
   var options = options;
@@ -13,11 +18,17 @@ var infiniteScrollWidget = function(options) {
   }
 
   return {
+    init: function(){
+      page = undefined;
+      nbPages = undefined;
+    },
+
     render: function(args) {
       var helper = args.helper;
-      var page = args.state.page;
-      var nbPages = args.results.nbPages;
       var parent = document.createElement('div');
+
+      page = args.state.page;
+      nbPages = args.results.nbPages;
 
       var addNewRecords = function(){
         if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
