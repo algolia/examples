@@ -1,12 +1,8 @@
-var instantsearch = require('instantsearch.js')
-  , Mustache = require('mustache')
-  , _ = require('lodash');
+var instantsearch = require('instantsearch.js'),
+    Mustache = require('mustache'),
+    _ = require('lodash');
 
-var cursor;
-var index;
-var page;
-var nbPages;
-var hitsDiv;
+var cursor, index, page, nbPages, hitsDiv;
 
 var scrolledNearBottom = function(el){
   return (el.scrollHeight - el.scrollTop) < 850;

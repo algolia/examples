@@ -1,7 +1,7 @@
-var instantsearch = require('instantsearch.js')
-  , getTemplate = require('./get_template.js')
-  , header = require('./header.js')
-  , infiniteScrollWidget = require('../search/widgets/infinite_scroll.js');
+var instantsearch = require('instantsearch.js'),
+    getTemplate = require('./get_template.js'),
+    header = require('./header.js'),
+    infiniteScrollWidget = require('../search/widgets/infinite_scroll.js');
 
 module.exports = function(indexName) {
   return [

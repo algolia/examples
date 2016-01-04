@@ -1,5 +1,5 @@
-var instantsearch = require('instantsearch.js')
-  , createWidgets = require('../util/create_widgets.js');
+var instantsearch = require('instantsearch.js'),
+    createWidgets = require('../util/create_widgets.js');
 
 module.exports = function(opts) {
   var search = instantsearch({

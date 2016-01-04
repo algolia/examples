@@ -77,8 +77,8 @@
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var instantsearch = __webpack_require__(9)
-	  , createWidgets = __webpack_require__(442);
+	var instantsearch = __webpack_require__(9),
+	    createWidgets = __webpack_require__(442);
 
 	module.exports = function(opts) {
 	  var search = instantsearch({
@@ -44251,10 +44251,10 @@
 /* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var instantsearch = __webpack_require__(9)
-	  , getTemplate = __webpack_require__(443)
-	  , header = __webpack_require__(444)
-	  , infiniteScrollWidget = __webpack_require__(445);
+	var instantsearch = __webpack_require__(9),
+	    getTemplate = __webpack_require__(443),
+	    header = __webpack_require__(444),
+	    infiniteScrollWidget = __webpack_require__(445);
 
 	module.exports = function(indexName) {
 	  return [
@@ -44334,22 +44334,18 @@
 
 	module.exports = function (title) {
 	  return '<h5>' + title + '</h5>';
-	}
+	};
 
 
 /***/ },
 /* 445 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var instantsearch = __webpack_require__(9)
-	  , Mustache = __webpack_require__(446)
-	  , _ = __webpack_require__(447);
+	var instantsearch = __webpack_require__(9),
+	    Mustache = __webpack_require__(446),
+	    _ = __webpack_require__(447);
 
-	var cursor;
-	var index;
-	var page;
-	var nbPages;
-	var hitsDiv;
+	var cursor, index, page, nbPages, hitsDiv;
 
 	var scrolledNearBottom = function(el){
 	  return (el.scrollHeight - el.scrollTop) < 850;

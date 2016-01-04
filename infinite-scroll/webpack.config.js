@@ -1,6 +1,6 @@
-var path = require('path')
-  , HtmlWebpackPlugin = require('html-webpack-plugin')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
