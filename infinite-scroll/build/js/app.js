@@ -44345,17 +44345,76 @@
 	    Mustache = __webpack_require__(446),
 	    _ = __webpack_require__(447);
 
-	var cursor, index, page, nbPages, hitsDiv;
+	var cursor, index, page, nbPages, loading;
+
+	var hitsDiv = document.getElementById('hits');
 
 	var scrolledNearBottom = function(el){
 	  return (el.scrollHeight - el.scrollTop) < 850;
-	}
+	};
+
+	var searchNewRecords = function(){
+	  if(scrolledNearBottom(hitsDiv)) {
+	    addSearchedRecords.call(this);
+	  }
+	};
+
+	var browseNewRecords = function(){
+	  if(scrolledNearBottom(hitsDiv)) {
+	    addBrowsedRecords.call(this);
+	  }
+	};
+
+	var addSearchedRecords = function(){
+	  if(!loading && page < nbPages - 1) {
+	    loading = true;
+	    page += 1;
+	    helper.searchOnce({page: page}, appendSearchResults.bind(this));
+	  }
+	};
+
+	var appendSearchResults = function(err, res, state){
+	  var result = document.createElement('div');
+	  page = res.page;
+	  _.assign(res, {pageNo: page + 1});
+	  loading = false;
+
+	  result.innerHTML = Mustache.render(this.templates.items, res);
+	  this.container.appendChild(result);
+
+	  if(page === nbPages - 1 && (this.args.results.nbHits > nbPages * this.args.results.hitsPerPage)){
+	    index = helper.client.initIndex(this.args.state.index);
+	    hitsDiv.removeEventListener('scroll', searchNewRecords.bind(this));
+	    hitsDiv.addEventListener('scroll', browseNewRecords.bind(this));
+	    addBrowsedRecords.call(this);
+	  }
+	};
+
+	var addBrowsedRecords = function(){
+	  if(!loading) {
+	    loading = true;
+	    if(!cursor) {
+	      index.browse(this.args.state.query, {page: 0, hitsPerPage: 20}, appendBrowsedResults.bind(this));
+	    } else {
+	      index.browseFrom(cursor, appendBrowsedResults.bind(this));
+	    }
+	  }
+	};
+
+	var appendBrowsedResults = function(err, res){
+	  cursor = res.cursor;
+
+	  var result = document.createElement('div');
+	  result.innerHTML = Mustache.render(this.templates.items, res);
+	  this.container.appendChild(result);
+
+	  loading = false;
+	};
 
 	var infiniteScrollWidget = function(options) {
 	  var container = document.querySelector(options.container);
 	  var options = options;
 	  var templates = options.templates;
-	  var loading = false;
 
 	  if (!container) {
 	    throw new Error('infiniteScroll: cannot select \'' + options.container + '\'');
@@ -44365,76 +44424,16 @@
 	    init: function(){
 	      page = undefined;
 	      nbPages = undefined;
-	      hitsDiv = document.getElementById('hits');
+	      hitsDiv.removeEventListener(searchNewRecords);
+	      hitsDiv.removeEventListener(browseNewRecords);
 	    },
 
 	    render: function(args) {
-	      var helper = args.helper;
+	      helper = args.helper;
 	      var parent = document.createElement('div');
 
 	      page = args.state.page;
 	      nbPages = args.results.nbPages;
-
-	      var searchNewRecords = function(){
-	        if( scrolledNearBottom(hitsDiv) ) {
-	          addSearchedRecords();
-	        }
-	      };
-
-	      var browseNewRecords = function(){
-	        if( scrolledNearBottom(hitsDiv) ) {
-	          addBrowsedRecords();
-	        }
-	      };
-
-	      var addSearchedRecords = function(){
-	        if(!loading && page < nbPages - 1) {
-	          loading = true;
-	          page += 1;
-	          helper.searchOnce({page: page}, function(err, res, state){
-	            page = res.page;
-	            _.assign(res, {pageNo: page + 1});
-	            loading = false;
-	            result = document.createElement('div');
-	            result.innerHTML = Mustache.render(templates.items, res);
-	            container.appendChild(result);
-
-	            if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
-	              index = helper.client.initIndex(args.state.index);
-	              hitsDiv.removeEventListener('scroll', searchNewRecords);
-	              hitsDiv.addEventListener('scroll', browseNewRecords);
-	              addBrowsedRecords();
-	            }
-	          });
-	        }
-	      };
-
-	      var addBrowsedRecords = function(){
-	        if(!loading) {
-	          loading = true;
-	          if(!cursor) {
-	            index.browse(args.state.query, {page: 0, hitsPerPage: 20}, function(err, res){
-	              cursor = res.cursor;
-
-	              result = document.createElement('div');
-	              result.innerHTML = Mustache.render(templates.items, res);
-	              container.appendChild(result);
-
-	              loading = false;
-	            });
-	          } else {
-	            index.browseFrom(cursor, function(err, res){
-	              cursor = res.cursor;
-
-	              result = document.createElement('div');
-	              result.innerHTML = Mustache.render(templates.items, res);
-	              container.appendChild(result);
-
-	              loading = false;
-	            });
-	          }
-	        }
-	      };
 
 	      if(args.results.nbHits) {
 	        _.assign(args.results, {pageNo: page + 1});
@@ -44447,7 +44446,13 @@
 	        });
 	      }
 
-	      hitsDiv.addEventListener('scroll', searchNewRecords);
+	      var scope = {
+	        templates: templates,
+	        container: container,
+	        args: args
+	      };
+
+	      hitsDiv.addEventListener('scroll', searchNewRecords.bind(scope));
 
 	      container.innerHTML = '';
 	      container.appendChild(parent);
