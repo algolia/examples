@@ -44375,7 +44375,7 @@
 	      page = args.state.page;
 	      nbPages = args.results.nbPages;
 
-	      var addNewRecords = function(){
+	      var searchNewRecords = function(){
 	        if( scrolledNearBottom(hitsDiv) ) {
 	          if(!loading && page < nbPages - 1) {
 	            loading = true;
@@ -44390,7 +44390,7 @@
 
 	              if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
 	                index = helper.client.initIndex(args.state.index);
-	                hitsDiv.removeEventListener('scroll', addNewRecords);
+	                hitsDiv.removeEventListener('scroll', searchNewRecords);
 	                hitsDiv.addEventListener('scroll', browseNewRecords);
 	                addBrowsedRecords();
 	              }
@@ -44443,13 +44443,13 @@
 	        });
 	      }
 
-	      hitsDiv.addEventListener('scroll', addNewRecords);
+	      hitsDiv.addEventListener('scroll', searchNewRecords);
 
 	      container.innerHTML = '';
 	      container.appendChild(parent);
 
 	      if(window.innerHeight > document.body.clientHeight) {
-	        addNewRecords();
+	        searchNewRecords();
 	      }
 	    }
 	  }
