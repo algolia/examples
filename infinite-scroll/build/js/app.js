@@ -57,7 +57,7 @@
 
 	app({
 	  appId: 'latency',
-	  apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
+	  apiKey: 'dd2a279afbf87aaeb8ed1604ffc5c349', // Special API key generated to allow browsing
 	  indexName: 'instant_search'
 	});
 
@@ -44345,6 +44345,16 @@
 	  , Mustache = __webpack_require__(446)
 	  , _ = __webpack_require__(447);
 
+	var cursor;
+	var index;
+	var page;
+	var nbPages;
+	var hitsDiv;
+
+	var scrolledNearBottom = function(el){
+	  return (el.scrollHeight - el.scrollTop) < 850;
+	}
+
 	var infiniteScrollWidget = function(options) {
 	  var container = document.querySelector(options.container);
 	  var options = options;
@@ -44356,16 +44366,21 @@
 	  }
 
 	  return {
+	    init: function(){
+	      page = undefined;
+	      nbPages = undefined;
+	      hitsDiv = document.getElementById('hits');
+	    },
+
 	    render: function(args) {
 	      var helper = args.helper;
-	      var page = args.state.page;
-	      var nbPages = args.results.nbPages;
 	      var parent = document.createElement('div');
 
-	      debugger
+	      page = args.state.page;
+	      nbPages = args.results.nbPages;
 
 	      var addNewRecords = function(){
-	        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
+	        if( scrolledNearBottom(hitsDiv) ) {
 	          if(!loading && page < nbPages - 1) {
 	            loading = true;
 	            page += 1;
@@ -44377,15 +44392,49 @@
 	              result.innerHTML = Mustache.render(templates.items, res);
 	              container.appendChild(result);
 
-	              console.log(args.results);
-
 	              if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
-	                debugger
+	                index = helper.client.initIndex(args.state.index);
+	                window.removeEventListener('scroll', addNewRecords);
+	                window.addEventListener('scroll', browseNewRecords);
+	                addBrowsedRecords();
 	              }
 	            });
 	          }
 	        }
 	      };
+
+	      var browseNewRecords = function(){
+	        if( scrolledNearBottom(hitsDiv) ) {
+	          if(!loading) {
+	            addBrowsedRecords();
+	          }
+	        }
+	      }
+
+	      var addBrowsedRecords = function(){
+	        loading = true;
+	        if(!cursor) {
+	          index.browse(args.state.query, {page: 0, hitsPerPage: 20}, function(err, res){
+	            cursor = res.cursor;
+
+	            result = document.createElement('div');
+	            result.innerHTML = Mustache.render(templates.items, res);
+	            container.appendChild(result);
+
+	            loading = false;
+	          });
+	        } else {
+	          index.browseFrom(cursor, function(err, res){
+	            cursor = res.cursor;
+
+	            result = document.createElement('div');
+	            result.innerHTML = Mustache.render(templates.items, res);
+	            container.appendChild(result);
+
+	            loading = false;
+	          });
+	        }
+	      }
 
 	      if(args.results.nbHits) {
 	        _.assign(args.results, {pageNo: page + 1});
@@ -44398,7 +44447,7 @@
 	        });
 	      }
 
-	      window.addEventListener('scroll', addNewRecords);
+	      hitsDiv.addEventListener('scroll', addNewRecords);
 
 	      container.innerHTML = '';
 	      container.appendChild(parent);

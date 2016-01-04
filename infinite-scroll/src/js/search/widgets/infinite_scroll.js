@@ -6,6 +6,11 @@ var cursor;
 var index;
 var page;
 var nbPages;
+var hitsDiv;
+
+var scrolledNearBottom = function(el){
+  return (el.scrollHeight - el.scrollTop) < 850;
+}
 
 var infiniteScrollWidget = function(options) {
   var container = document.querySelector(options.container);
@@ -21,6 +26,7 @@ var infiniteScrollWidget = function(options) {
     init: function(){
       page = undefined;
       nbPages = undefined;
+      hitsDiv = document.getElementById('hits');
     },
 
     render: function(args) {
@@ -31,7 +37,7 @@ var infiniteScrollWidget = function(options) {
       nbPages = args.results.nbPages;
 
       var addNewRecords = function(){
-        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
+        if( scrolledNearBottom(hitsDiv) ) {
           if(!loading && page < nbPages - 1) {
             loading = true;
             page += 1;
@@ -55,7 +61,7 @@ var infiniteScrollWidget = function(options) {
       };
 
       var browseNewRecords = function(){
-        if( window.scrollY > (document.querySelector('body').clientHeight - window.innerHeight) - 300 ) {
+        if( scrolledNearBottom(hitsDiv) ) {
           if(!loading) {
             addBrowsedRecords();
           }
@@ -98,7 +104,7 @@ var infiniteScrollWidget = function(options) {
         });
       }
 
-      window.addEventListener('scroll', addNewRecords);
+      hitsDiv.addEventListener('scroll', addNewRecords);
 
       container.innerHTML = '';
       container.appendChild(parent);
