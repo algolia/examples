@@ -44339,6 +44339,12 @@
 
 	var hitsDiv = document.getElementById('hits');
 
+	var renderTemplate = function(template, res){
+	  var results = document.createElement('div');
+	  results.innerHTML = Mustache.render(template, res);
+	  return results;
+	};
+
 	var scrolledNearBottom = function(el){
 	  return (el.scrollHeight - el.scrollTop) < 850;
 	};
@@ -44364,12 +44370,11 @@
 	};
 
 	var appendSearchResults = function(err, res, state){
-	  var result = document.createElement('div');
 	  page = res.page;
 	  _.assign(res, {pageNo: page + 1});
 	  loading = false;
 
-	  result.innerHTML = Mustache.render(this.templates.items, res);
+	  var result = renderTemplate(this.templates.items, res);
 	  this.container.appendChild(result);
 
 	  if(page === nbPages - 1 && (this.args.results.nbHits > nbPages * this.args.results.hitsPerPage)){
@@ -44393,30 +44398,26 @@
 
 	var appendBrowsedResults = function(err, res){
 	  cursor = res.cursor;
-
-	  var result = document.createElement('div');
-	  result.innerHTML = Mustache.render(this.templates.items, res);
+	  var results = renderTemplate(this.templates.items, res);
 	  this.container.appendChild(result);
 
 	  loading = false;
 	};
 
 	var initialRender = function(container, args, templates, parent){
-	  var parent = document.createElement('div');
-
 	  if(args.results.nbHits) {
 	    _.assign(args.results, {pageNo: page + 1});
-	    parent.innerHTML = Mustache.render(templates.items, args.results);
+	    var results = renderTemplate(templates.items, args.results);
 	  } else {
-	    parent.innerHTML = Mustache.render(templates.empty, args.results);
-	    parent.querySelector('.clear-all').addEventListener('click', function(e){
+	    var results = renderTemplate(templates.empty, args.results);
+	    results.querySelector('.clear-all').addEventListener('click', function(e){
 	      e.preventDefault();
 	      helper.clearRefinements().setQuery('').search();
 	    });
 	  }
 
 	  container.innerHTML = '';
-	  container.appendChild(parent);
+	  container.appendChild(results);
 	};
 
 	var infiniteScrollWidget = function(options) {
