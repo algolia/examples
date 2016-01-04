@@ -44411,6 +44411,24 @@
 	  loading = false;
 	};
 
+	var initialRender = function(container, args, templates, parent){
+	  var parent = document.createElement('div');
+
+	  if(args.results.nbHits) {
+	    _.assign(args.results, {pageNo: page + 1});
+	    parent.innerHTML = Mustache.render(templates.items, args.results);
+	  } else {
+	    parent.innerHTML = Mustache.render(templates.empty, args.results);
+	    parent.querySelector('.clear-all').addEventListener('click', function(e){
+	      e.preventDefault();
+	      helper.clearRefinements().setQuery('').search();
+	    });
+	  }
+
+	  container.innerHTML = '';
+	  container.appendChild(parent);
+	};
+
 	var infiniteScrollWidget = function(options) {
 	  var container = document.querySelector(options.container);
 	  var options = options;
@@ -44430,21 +44448,8 @@
 
 	    render: function(args) {
 	      helper = args.helper;
-	      var parent = document.createElement('div');
-
 	      page = args.state.page;
 	      nbPages = args.results.nbPages;
-
-	      if(args.results.nbHits) {
-	        _.assign(args.results, {pageNo: page + 1});
-	        parent.innerHTML = Mustache.render(templates.items, args.results);
-	      } else {
-	        parent.innerHTML = Mustache.render(templates.empty, args.results);
-	        parent.querySelector('.clear-all').addEventListener('click', function(e){
-	          e.preventDefault();
-	          helper.clearRefinements().setQuery('').search();
-	        });
-	      }
 
 	      var scope = {
 	        templates: templates,
@@ -44452,14 +44457,11 @@
 	        args: args
 	      };
 
-	      hitsDiv.addEventListener('scroll', searchNewRecords.bind(scope));
-
-	      container.innerHTML = '';
-	      container.appendChild(parent);
-
-	      if(window.innerHeight > document.body.clientHeight) {
-	        searchNewRecords();
+	      if(args.results.nbHits) {
+	        hitsDiv.addEventListener('scroll', searchNewRecords.bind(scope));
 	      }
+
+	      initialRender(container, args, templates);
 	    }
 	  }
 	};
