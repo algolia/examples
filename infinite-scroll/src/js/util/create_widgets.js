@@ -1,5 +1,4 @@
 var instantsearch = require('instantsearch.js'),
-    getTemplate = require('./get_template.js'),
     header = require('./header.js'),
     infiniteScrollWidget = require('../search/widgets/infinite_scroll.js');
 
@@ -58,8 +57,8 @@ module.exports = function(indexName) {
     infiniteScrollWidget({
       container: '#hits',
       templates: {
-        items: getTemplate('hits'),
-        empty: getTemplate('no-results')
+        items: document.querySelector('#hits-template').innerHTML,
+        empty: document.querySelector('#no-results-template').innerHTML
       }
     })
   ];

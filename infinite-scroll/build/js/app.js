@@ -44252,9 +44252,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var instantsearch = __webpack_require__(9),
-	    getTemplate = __webpack_require__(443),
-	    header = __webpack_require__(444),
-	    infiniteScrollWidget = __webpack_require__(445);
+	    header = __webpack_require__(443),
+	    infiniteScrollWidget = __webpack_require__(444);
 
 	module.exports = function(indexName) {
 	  return [
@@ -44311,8 +44310,8 @@
 	    infiniteScrollWidget({
 	      container: '#hits',
 	      templates: {
-	        items: getTemplate('hits'),
-	        empty: getTemplate('no-results')
+	        items: document.querySelector('#hits-template').innerHTML,
+	        empty: document.querySelector('#no-results-template').innerHTML
 	      }
 	    })
 	  ];
@@ -44323,27 +44322,18 @@
 /* 443 */
 /***/ function(module, exports) {
 
-	module.exports = function (templateName) {
-	  return document.querySelector('#' + templateName + '-template').innerHTML;
-	};
-
-
-/***/ },
-/* 444 */
-/***/ function(module, exports) {
-
 	module.exports = function (title) {
 	  return '<h5>' + title + '</h5>';
 	};
 
 
 /***/ },
-/* 445 */
+/* 444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var instantsearch = __webpack_require__(9),
-	    Mustache = __webpack_require__(446),
-	    _ = __webpack_require__(447);
+	    Mustache = __webpack_require__(445),
+	    _ = __webpack_require__(446);
 
 	var cursor, index, page, nbPages, loading;
 
@@ -44470,7 +44460,7 @@
 
 
 /***/ },
-/* 446 */
+/* 445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -45105,7 +45095,7 @@
 
 
 /***/ },
-/* 447 */
+/* 446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
