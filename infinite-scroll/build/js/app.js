@@ -44377,60 +44377,64 @@
 
 	      var searchNewRecords = function(){
 	        if( scrolledNearBottom(hitsDiv) ) {
-	          if(!loading && page < nbPages - 1) {
-	            loading = true;
-	            page += 1;
-	            helper.searchOnce({page: page}, function(err, res, state){
-	              page = res.page;
-	              _.assign(res, {pageNo: page + 1});
-	              loading = false;
-	              result = document.createElement('div');
-	              result.innerHTML = Mustache.render(templates.items, res);
-	              container.appendChild(result);
-
-	              if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
-	                index = helper.client.initIndex(args.state.index);
-	                hitsDiv.removeEventListener('scroll', searchNewRecords);
-	                hitsDiv.addEventListener('scroll', browseNewRecords);
-	                addBrowsedRecords();
-	              }
-	            });
-	          }
+	          addSearchedRecords();
 	        }
 	      };
 
 	      var browseNewRecords = function(){
 	        if( scrolledNearBottom(hitsDiv) ) {
-	          if(!loading) {
-	            addBrowsedRecords();
-	          }
+	          addBrowsedRecords();
 	        }
-	      }
+	      };
+
+	      var addSearchedRecords = function(){
+	        if(!loading && page < nbPages - 1) {
+	          loading = true;
+	          page += 1;
+	          helper.searchOnce({page: page}, function(err, res, state){
+	            page = res.page;
+	            _.assign(res, {pageNo: page + 1});
+	            loading = false;
+	            result = document.createElement('div');
+	            result.innerHTML = Mustache.render(templates.items, res);
+	            container.appendChild(result);
+
+	            if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
+	              index = helper.client.initIndex(args.state.index);
+	              hitsDiv.removeEventListener('scroll', searchNewRecords);
+	              hitsDiv.addEventListener('scroll', browseNewRecords);
+	              addBrowsedRecords();
+	            }
+	          });
+	        }
+	      };
 
 	      var addBrowsedRecords = function(){
-	        loading = true;
-	        if(!cursor) {
-	          index.browse(args.state.query, {page: 0, hitsPerPage: 20}, function(err, res){
-	            cursor = res.cursor;
+	        if(!loading) {
+	          loading = true;
+	          if(!cursor) {
+	            index.browse(args.state.query, {page: 0, hitsPerPage: 20}, function(err, res){
+	              cursor = res.cursor;
 
-	            result = document.createElement('div');
-	            result.innerHTML = Mustache.render(templates.items, res);
-	            container.appendChild(result);
+	              result = document.createElement('div');
+	              result.innerHTML = Mustache.render(templates.items, res);
+	              container.appendChild(result);
 
-	            loading = false;
-	          });
-	        } else {
-	          index.browseFrom(cursor, function(err, res){
-	            cursor = res.cursor;
+	              loading = false;
+	            });
+	          } else {
+	            index.browseFrom(cursor, function(err, res){
+	              cursor = res.cursor;
 
-	            result = document.createElement('div');
-	            result.innerHTML = Mustache.render(templates.items, res);
-	            container.appendChild(result);
+	              result = document.createElement('div');
+	              result.innerHTML = Mustache.render(templates.items, res);
+	              container.appendChild(result);
 
-	            loading = false;
-	          });
+	              loading = false;
+	            });
+	          }
 	        }
-	      }
+	      };
 
 	      if(args.results.nbHits) {
 	        _.assign(args.results, {pageNo: page + 1});
