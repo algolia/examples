@@ -47,8 +47,8 @@ var infiniteScrollWidget = function(options) {
 
               if(page === nbPages - 1 && (args.results.nbHits > nbPages * args.results.hitsPerPage)){
                 index = helper.client.initIndex(args.state.index);
-                window.removeEventListener('scroll', addNewRecords);
-                window.addEventListener('scroll', browseNewRecords);
+                hitsDiv.removeEventListener('scroll', addNewRecords);
+                hitsDiv.addEventListener('scroll', browseNewRecords);
                 addBrowsedRecords();
               }
             });
