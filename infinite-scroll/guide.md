@@ -101,18 +101,18 @@ Right now our search doesn't do anything, and that's because we haven't added an
 We need to first create an array that will hold all of our widgets. We'll start with our search box widget.
 
 ```
-var widgets = [
-  instantsearch.widgets.searchBox({
-    container: '#search-input'
-  }),
-  infiniteScrollWidget({
-    container: '#hits',
-    templates: {
-      items: document.querySelector('#hits-template').innerHTML,
-      empty: document.querySelector('#no-results-template').innerHTML
-    }
-  })
-];
+var searchBoxWidget = instantsearch.widgets.searchBox({
+  container: '#search-input'
+});
+
+var infiniteScrollWidget = infiniteScrollWidget({
+  container: '#hits',
+  templates: {
+    items: document.querySelector('#hits-template').innerHTML,
+    empty: document.querySelector('#no-results-template').innerHTML
+  }
+});
+
 ```
 
 The container is in reference to the elements we added earlier inside of our HTML. This is where our widget will live inside of the DOM.
@@ -122,7 +122,8 @@ For the infinite scroll widget, we also need to specify templates, or views. We'
 Finally, let's add our widget to the instantsearch.js instance and start listening for searches:
 
 ```
-widgets.forEach(function(widget){ search.addWidget(widget); });
+search.addWidget(searchBoxWidget);
+search.addWidget(infiniteScrollWidget);
 search.start();
 ```
 
@@ -249,7 +250,7 @@ There's one more thing that's easy to gloss over:
 
 - When a user makes a new search, stop listening for the previous scroll event
 
-This last aspect is important because instant search results, we are counting every key stroke as a new search. If a user searches for "hot dog" and we don't remove any event listeners, will have seven at the end of the search. Even more if the user mistypes and originally types "hog dot" before correcting the search.
+This last aspect is important because with instant search results, we are counting every key stroke as a new search. If a user searches for "hot dog" and we don't remove any event listeners, will have seven at the end of the search. Even more if the user mistypes and originally types "hog dot" before correcting the search.
 
 Because of this we will need to create a named function and it will have to live outside of our render method, so that it can be removed in the initialization of the widget (remember, the widget reinitializes before each new search).
 
@@ -364,7 +365,9 @@ One thing we need to know is that Algolia will return at most the first 1,000 re
 
 Buf if you do—as with infinite scrolling—there is a way to get them. This is through the `browse` method. Using `browse`, Algolia doesn't take into account all of the ranking criteria. We, then, necessarily lose relevance when compared to the default search method.
 
-Your basic API key won't work with the `browse` method, either. Since someone, such as a competitor, can get all of your results through `browse`, we require you to use either your Admin API Key or, better, an API key you created specifically for this purpose. The API key you create should be limited to allow browsing only, limited to your website or app, and restricted in terms of terms of how many API calls can be made per API per hour.
+Your basic API key won't work with the `browse` method, either. Since someone, such as a competitor, can get all of your results through `browse`, we require an explicit decision on your part to enable this functionality. You enable it by either using your Admin API Key or, better, an API key you created specifically for this purpose.
+
+To decrease the chance of someone fetching all of your results, the API key you create should be limited to allow browsing only, limited to your website or app, and restricted in terms of terms of how many API calls can be made per API per hour.
 
 You can create an API key for this purpose in the [credentials](https://www.algolia.com/licensing) section of your dashboard. You also **must** host your site on HTTPS to use browse.
 
