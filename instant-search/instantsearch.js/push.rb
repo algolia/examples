@@ -30,22 +30,20 @@ Algolia.init :application_id => APPLICATION_ID, :api_key => API_KEY
 index = Algolia::Index.new(INDEX_BASE)
 
 default_settings = {
-  attributesToIndex: ['brand', 'name', 'categories', 'hierarchicalCategories', 'unordered(description)'],
+  attributesToIndex: %w(brand name categories hierarchicalCategories unordered(description)),
   customRanking: ['desc(popularity)'],
-  attributesForFaceting: ['brand', 'price_range', 'categories', 'hierarchicalCategories', 'type', 'price'],
+  attributesForFaceting: %w(brand price_range categories hierarchicalCategories type price),
   minWordSizefor1Typo: 3,
   minWordSizefor2Typos: 7
 }
 
-index_settings = default_settings.clone
-index_settings["ignorePlurals"] = true
-index_settings["slaves"] = ["#{INDEX_BASE}_price_desc", "#{INDEX_BASE}_price_asc"]
+index_settings = default_settings.merge({
+                                            ignorePlurals: true,
+                                            slaves: %W(#{INDEX_BASE}_price_desc #{INDEX_BASE}_price_asc)
+                                        })
 
-price_desc_settings = default_settings.clone
-price_desc_settings["ranking"] = ["desc(price)", "typo", "geo", "words", "proximity", "attribute", "exact", "custom"]
-
-price_asc_settings = default_settings.clone
-price_asc_settings["ranking"] = ["asc(price)", "typo", "geo", "words", "proximity", "attribute", "exact", "custom"]
+price_desc_settings = default_settings.merge({ ranking: %w(desc(price) typo geo words proximity attribute exact custom) })
+price_asc_settings = default_settings.merge({ ranking: %w(asc(price) typo geo words proximity attribute exact custom) })
 
 index.set_settings(index_settings)
 Algolia::Index.new("#{INDEX_BASE}_price_desc").set_settings(price_desc_settings)
