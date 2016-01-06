@@ -98,7 +98,7 @@ Our app ID, API key, and index name can all be retrieved from the Algolia dashbo
 
 Right now our search doesn't do anything, and that's because we haven't added any widgets. We need to add, at least, our search box and our results.
 
-We need to first create an array that will hold all of our widgets. We'll start with our search box widget.
+We need to first create our widgets.
 
 ```
 var searchBoxWidget = instantsearch.widgets.searchBox({
@@ -134,6 +134,8 @@ Earlier, we added two widgets to our instantsearch.js instance. The search box w
 Start out with this:
 
 ```
+var cursor, index, page, nbPages, loading;
+
 var infiniteScrollWidget = function(options){
   var container = document.querySelector(options.container);
   var templates = options.templates;
@@ -149,13 +151,15 @@ var infiniteScrollWidget = function(options){
 };
 ```
 
-When creating a custom widget we can expose two or three methods. Both `init` and `render` are always required.
+A custom widget is an object that exposes two or three methods. Both `init` and `render` are always required.
 
 The `init` method initializes the widget before the first search. It accepts an object that has the search `state`, the search `helper`, and the configuration of the templates: the `templatesConfig`.
 
 Meanwhile, the `render` method is called after the search results are returned from Algolia. This also accepts an object with the `results` of the query, the search `state`, the search `helper`, and a function (`createURL`) to create a URL with the search parameters.
 
 Optionally, you can expose a `getConfiguration` method, which can configure the underlying AlgoliaSearch JS helper. It takes [SearchParameters](https://community.algolia.com/algoliasearch-helper-js/docs/SearchParameters.html) and is expected to return an object of configuration properties.
+
+To make the widget easier to configure, we usually have a function like `infiniteScrollWidget` that takes in options and returns the configured widget object.
 
 ## Rendering Results
 
@@ -212,7 +216,7 @@ Then we'll create a function to render our search results after a search is made
 ```
 var initialRender = function(container, args, templates, parent){
   if(args.results.nbHits) {
-    _.assign(args.results, {pageNo: page + 1});
+    args.results.pageNo = page + 1;
     var results = renderTemplate(templates.items, args.results);
   } else {
     var results = renderTemplate(templates.empty, args.results);
@@ -231,9 +235,15 @@ var initialRender = function(container, args, templates, parent){
 And call it from within the render method of our infinite scroll widget:
 
 ```
-render: function(args){
-  initialRender(container, args, templates);
-}
+var infiniteScrollWidget = function(options) {
+  // ...
+  return {
+    // ...
+    render: function(args) {
+      initialRender(container, args, templates);
+    }
+  };
+};
 ```
 
 All we're doing is checking to see if there are any results (`nbHits`), rendering them if there are, otherwise rendering our page that says there are none.
@@ -281,7 +291,7 @@ var addSearchedRecords = function(){
 
 var appendSearchResults = function(err, res, state){
   page = res.page;
-  _.assign(res, {pageNo: page + 1});
+  args.results.pageNo = page + 1;
   loading = false;
 
   var result = renderTemplate(this.templates.items, res);
@@ -346,6 +356,30 @@ var appendSearchResults = function(err, res, state){
 };
 ```
 
+Then, make sure it's being invoked as the user is scrolling:
+
+```
+var infiniteScrollWidget = function(options) {
+  // ...
+  return {
+    var scope = {
+      templates: templates,
+      container: container,
+      args: args,
+      offset: offset
+    };
+
+    if(args.results.nbHits) {
+      hitsDiv.addEventListener('scroll', searchNewRecords.bind(scope));
+    }
+
+    render: function(args) {
+      initialRender(container, args, templates);
+    }
+  };
+};
+```
+
 Next up, we want to check two things: that the next set of results isn't loading and that we aren't at the end.
 
 If both of those are the case, we signal that the results are loading and search for results, specifying the page and using the algolia search helper. When the results have returned, the helper will call our `appendSearchResults` callback.
@@ -361,13 +395,13 @@ First, a detour.
 
 ## Searching vs Browsing
 
-One thing we need to know is that Algolia will return at most the first 1,000 results for any search. This allows us to return results quickly and with maximum relevancy. In nearly all settings, you won't need more than 1,000 results.
+One thing to be aware of is that Algolia will return at most the first 1,000 results for any search. This allows us to return results quickly and with maximum relevancy. In nearly all settings, you won't need more than 1,000 results.
 
 Buf if you do—as with infinite scrolling—there is a way to get them. This is through the `browse` method. Using `browse`, Algolia doesn't take into account all of the ranking criteria. We, then, necessarily lose relevance when compared to the default search method.
 
-Your basic API key won't work with the `browse` method, either. Since someone, such as a competitor, can get all of your results through `browse`, we require an explicit decision on your part to enable this functionality. You enable it by either using your Admin API Key or, better, an API key you created specifically for this purpose.
+Your basic API key won't work with the `browse` method, either. Since someone, such as a competitor, can get all of your results through `browse`, we require an explicit decision on your part to enable this functionality. You enable it with an API key you have created specifically for this purpose.
 
-To decrease the chance of someone fetching all of your results, the API key you create should be limited to allow browsing only, limited to your website or app, and restricted in terms of terms of how many API calls can be made per API per hour.
+To decrease the chance of someone fetching all of your results, the API key you create should be limited to allow browsing only, limited to your website or app, and restricted in terms of terms of how many API calls can be made per IP per hour.
 
 You can create an API key for this purpose in the [credentials](https://www.algolia.com/licensing) section of your dashboard. You also **must** host your site on HTTPS to use browse.
 

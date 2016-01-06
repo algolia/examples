@@ -59,7 +59,8 @@ module.exports = function(indexName) {
       templates: {
         items: document.querySelector('#hits-template').innerHTML,
         empty: document.querySelector('#no-results-template').innerHTML
-      }
+      },
+      offset: 850
     })
   ];
 }

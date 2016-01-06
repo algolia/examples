@@ -12,18 +12,18 @@ var renderTemplate = function(template, res){
   return results;
 };
 
-var scrolledNearBottom = function(el){
-  return (el.scrollHeight - el.scrollTop) < 850;
+var scrolledNearBottom = function(el, offset){
+  return (el.scrollHeight - el.scrollTop) < offset;
 };
 
 var searchNewRecords = function(){
-  if(scrolledNearBottom(hitsDiv)) {
+  if(scrolledNearBottom(hitsDiv, this.offset)) {
     addSearchedRecords.call(this);
   }
 };
 
 var browseNewRecords = function(){
-  if(scrolledNearBottom(hitsDiv)) {
+  if(scrolledNearBottom(hitsDiv, this.offset)) {
     addBrowsedRecords.call(this);
   }
 };
@@ -91,6 +91,7 @@ var infiniteScrollWidget = function(options) {
   var container = document.querySelector(options.container);
   var options = options;
   var templates = options.templates;
+  var offset = parseInt(options.offset);
 
   if (!container) {
     throw new Error('infiniteScroll: cannot select \'' + options.container + '\'');
@@ -112,7 +113,8 @@ var infiniteScrollWidget = function(options) {
       var scope = {
         templates: templates,
         container: container,
-        args: args
+        args: args,
+        offset: offset
       };
 
       if(args.results.nbHits) {
