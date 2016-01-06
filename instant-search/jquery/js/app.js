@@ -1,7 +1,6 @@
-$(document).ready(function() {
+/* global $, Hogan, algoliasearch, algoliasearchHelper */
 
-
-
+$(document).ready(function () {
   // INITIALIZATION
   // ==============
 
@@ -24,14 +23,14 @@ $(document).ready(function() {
   var algoliaHelper = algoliasearchHelper(algolia, INDEX_NAME, PARAMS);
 
   // DOM BINDING
-  $searchInput = $('#search-input');
-  $searchInputIcon = $('#search-input-icon');
-  $main = $('main');
-  $sortBySelect = $('#sort-by-select');
-  $hits = $('#hits');
-  $stats = $('#stats');
-  $facets = $('#facets');
-  $pagination = $('#pagination');
+  var $searchInput = $('#search-input');
+  var $searchInputIcon = $('#search-input-icon');
+  var $main = $('main');
+  var $sortBySelect = $('#sort-by-select');
+  var $hits = $('#hits');
+  var $stats = $('#stats');
+  var $facets = $('#facets');
+  var $pagination = $('#pagination');
 
   // Hogan templates binding
   var hitTemplate = Hogan.compile($('#hit-template').text());
@@ -41,14 +40,12 @@ $(document).ready(function() {
   var paginationTemplate = Hogan.compile($('#pagination-template').text());
   var noResultsTemplate = Hogan.compile($('#no-results-template').text());
 
-
-
   // SEARCH BINDING
   // ==============
 
   // Input binding
   $searchInput
-  .on('input propertychange', function(e) {
+  .on('input propertychange', function (e) {
     var query = e.currentTarget.value;
 
     toggleIconEmptyInput(query);
@@ -57,17 +54,19 @@ $(document).ready(function() {
   .focus();
 
   // Search errors
-  algoliaHelper.on('error', function(error) {
+  algoliaHelper.on('error', function (error) {
+    /* eslint-disable no-console */
     console.log(error);
+    /* eslint-enable no-console */
   });
 
   // Update URL
-  algoliaHelper.on('change', function(state) {
+  algoliaHelper.on('change', function () {
     setURLParams();
   });
 
   // Search results
-  algoliaHelper.on('result', function(content, state) {
+  algoliaHelper.on('result', function (content, state) {
     renderStats(content);
     renderHits(content);
     renderFacets(content, state);
@@ -79,8 +78,6 @@ $(document).ready(function() {
   // Initial search
   initFromURLParams();
   algoliaHelper.search();
-
-
 
   // RENDER SEARCH COMPONENTS
   // ========================
@@ -119,10 +116,8 @@ $(document).ready(function() {
         facetContent.from = Math.min(facetContent.max, Math.max(facetContent.min, from));
         facetContent.to = Math.min(facetContent.max, Math.max(facetContent.min, to));
         facetsHtml += sliderTemplate.render(facetContent);
-      }
-
-      // Conjunctive + Disjunctive facets
-      else {
+      } else {
+        // Conjunctive + Disjunctive facets
         facetContent = {
           facet: facetName,
           title: FACETS_LABELS[facetName],
@@ -137,7 +132,28 @@ $(document).ready(function() {
 
   function bindSearchObjects(state) {
     // Bind Sliders
-    for (facetIndex = 0; facetIndex < FACETS_SLIDER.length; ++facetIndex) {
+    function prettify(num) {
+      return '$' + parseInt(num, 10);
+    }
+
+    function onFinish(facetName) {
+      return function (data) {
+        var lowerBound = state.getNumericRefinement(facetName, '>=');
+        lowerBound = lowerBound && lowerBound[0] || data.min;
+        if (data.from !== lowerBound) {
+          algoliaHelper.removeNumericRefinement(facetName, '>=');
+          algoliaHelper.addNumericRefinement(facetName, '>=', data.from).search();
+        }
+        var upperBound = state.getNumericRefinement(facetName, '<=');
+        upperBound = upperBound && upperBound[0] || data.max;
+        if (data.to !== upperBound) {
+          algoliaHelper.removeNumericRefinement(facetName, '<=');
+          algoliaHelper.addNumericRefinement(facetName, '<=', data.to).search();
+        }
+      };
+    }
+
+    for (var facetIndex = 0; facetIndex < FACETS_SLIDER.length; ++facetIndex) {
       var facetName = FACETS_SLIDER[facetIndex];
       var slider = $('#' + facetName + '-slider');
       var sliderOptions = {
@@ -147,23 +163,8 @@ $(document).ready(function() {
         max: slider.data('max'),
         from: slider.data('from'),
         to: slider.data('to'),
-        prettify: function(num) {
-          return '$' + parseInt(num, 10);
-        },
-        onFinish: function(data) {
-          var lowerBound = state.getNumericRefinement(facetName, '>=');
-          lowerBound = lowerBound && lowerBound[0] || data.min;
-          if (data.from !== lowerBound) {
-            algoliaHelper.removeNumericRefinement(facetName, '>=');
-            algoliaHelper.addNumericRefinement(facetName, '>=', data.from).search();
-          }
-          var upperBound = state.getNumericRefinement(facetName, '<=');
-          upperBound = upperBound && upperBound[0] || data.max;
-          if (data.to !== upperBound) {
-            algoliaHelper.removeNumericRefinement(facetName, '<=');
-            algoliaHelper.addNumericRefinement(facetName, '<=', data.to).search();
-          }
-        }
+        prettify: prettify,
+        onFinish: onFinish(facetName)
       };
       slider.ionRangeSlider(sliderOptions);
     }
@@ -191,8 +192,6 @@ $(document).ready(function() {
     $pagination.html(paginationTemplate.render(pagination));
   }
 
-
-
   // NO RESULTS
   // ==========
 
@@ -207,71 +206,77 @@ $(document).ready(function() {
     var i;
     var j;
     for (i in algoliaHelper.state.facetsRefinements) {
-      filters.push({
-        class: 'toggle-refine',
-        facet: i, facet_value: algoliaHelper.state.facetsRefinements[i],
-        label: FACETS_LABELS[i] + ': ',
-        label_value: algoliaHelper.state.facetsRefinements[i]
-      });
-    }
-    for (i in algoliaHelper.state.disjunctiveFacetsRefinements) {
-      for (j in algoliaHelper.state.disjunctiveFacetsRefinements[i]) {
+      if ({}.hasOwnProperty(algoliaHelper.state.facetsRefinements, i)) {
         filters.push({
           class: 'toggle-refine',
-          facet: i,
-          facet_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j],
+          facet: i, facet_value: algoliaHelper.state.facetsRefinements[i],
           label: FACETS_LABELS[i] + ': ',
-          label_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j]
+          label_value: algoliaHelper.state.facetsRefinements[i]
         });
       }
     }
+    for (i in algoliaHelper.state.disjunctiveFacetsRefinements) {
+      if ({}.hasOwnProperty(algoliaHelper.state.disjunctiveFacetsRefinements, i)) {
+        for (j in algoliaHelper.state.disjunctiveFacetsRefinements[i]) {
+          if ({}.hasOwnProperty(algoliaHelper.state.disjunctiveFacetsRefinements[i], j)) {
+            filters.push({
+              class: 'toggle-refine',
+              facet: i,
+              facet_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j],
+              label: FACETS_LABELS[i] + ': ',
+              label_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j]
+            });
+          }
+        }
+      }
+    }
     for (i in algoliaHelper.state.numericRefinements) {
-      for (j in algoliaHelper.state.numericRefinements[i]) {
-        filters.push({
-          class: 'remove-numeric-refine',
-          facet: i,
-          facet_value: j,
-          label: FACETS_LABELS[i] + ' ',
-          label_value: j + ' ' + algoliaHelper.state.numericRefinements[i][j]
-        });
+      if ({}.hasOwnProperty(algoliaHelper.state.numericRefinements, i)) {
+        for (j in algoliaHelper.state.numericRefinements[i]) {
+          if ({}.hasOwnProperty(algoliaHelper.state.numericRefinements[i], j)) {
+            filters.push({
+              class: 'remove-numeric-refine',
+              facet: i,
+              facet_value: j,
+              label: FACETS_LABELS[i] + ' ',
+              label_value: j + ' ' + algoliaHelper.state.numericRefinements[i][j]
+            });
+          }
+        }
       }
     }
     $hits.html(noResultsTemplate.render({query: content.query, filters: filters}));
   }
 
-
-
   // EVENTS BINDING
   // ==============
 
-  $(document).on('click', '.toggle-refine', function(e) {
+  $(document).on('click', '.toggle-refine', function (e) {
     e.preventDefault();
     algoliaHelper.toggleRefine($(this).data('facet'), $(this).data('value')).search();
   });
-  $(document).on('click', '.go-to-page', function(e) {
+  $(document).on('click', '.go-to-page', function (e) {
     e.preventDefault();
     $('html, body').animate({scrollTop: 0}, '500', 'swing');
     algoliaHelper.setCurrentPage(+$(this).data('page') - 1).search();
   });
-  $sortBySelect.on('change', function(e) {
+  $sortBySelect.on('change', function (e) {
     e.preventDefault();
     algoliaHelper.setIndex(INDEX_NAME + $(this).val()).search();
   });
-  $searchInputIcon.on('click', function(e) {
+  $searchInputIcon.on('click', function (e) {
     e.preventDefault();
     $searchInput.val('').keyup().focus();
   });
-  $(document).on('click', '.remove-numeric-refine', function(e) {
+  $(document).on('click', '.remove-numeric-refine', function (e) {
     e.preventDefault();
     algoliaHelper.removeNumericRefinement($(this).data('facet'), $(this).data('value')).search();
   });
-  $(document).on('click', '.clear-all', function(e) {
+  $(document).on('click', '.clear-all', function (e) {
     e.preventDefault();
     $searchInput.val('').focus();
     algoliaHelper.setQuery('').clearRefinements().search();
   });
-
-
 
   // URL MANAGEMENT
   // ==============
@@ -288,8 +293,8 @@ $(document).ready(function() {
   var URLHistoryThreshold = 700;
   function setURLParams() {
     var trackedParameters = ['attribute:*'];
-    if (algoliaHelper.state.query.trim() !== '')  trackedParameters.push('query');
-    if (algoliaHelper.state.page !== 0)           trackedParameters.push('page');
+    if (algoliaHelper.state.query.trim() !== '') trackedParameters.push('query');
+    if (algoliaHelper.state.page !== 0) trackedParameters.push('page');
     if (algoliaHelper.state.index !== INDEX_NAME) trackedParameters.push('index');
 
     var URLParams = window.location.search.slice(1);
@@ -304,15 +309,13 @@ $(document).ready(function() {
     } else {
       window.history.pushState(null, '', '?' + helperParams + nonAlgoliaURLHash);
     }
-    URLHistoryTimer = now+URLHistoryThreshold;
+    URLHistoryTimer = now + URLHistoryThreshold;
   }
 
-  window.addEventListener('popstate', function() {
+  window.addEventListener('popstate', function () {
     initFromURLParams();
     algoliaHelper.search();
   });
-
-
 
   // HELPER METHODS
   // ==============
@@ -320,6 +323,4 @@ $(document).ready(function() {
   function toggleIconEmptyInput(query) {
     $searchInputIcon.toggleClass('empty', query.trim() !== '');
   }
-
-
 });
