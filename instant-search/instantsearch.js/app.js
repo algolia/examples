@@ -10,7 +10,6 @@ function app(opts) {
     appId: opts.appId,
     apiKey: opts.apiKey,
     indexName: opts.indexName,
-    searchParameters: opts.searchParameters,
     urlSync: true
   });
 
