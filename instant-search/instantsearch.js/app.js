@@ -12,9 +12,7 @@ function app(opts) {
     apiKey: opts.apiKey,
     indexName: opts.indexName,
     searchParameters: opts.searchParameters,
-    urlSync: {
-      useHash: true
-    }
+    urlSync: true
   });
 
   var widgets = [
