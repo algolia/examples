@@ -15,7 +15,8 @@ function app(opts) {
 
   var widgets = [
     instantsearch.widgets.searchBox({
-      container: '#search-input'
+      container: '#search-input',
+      placeholder: 'Search for products'
     }),
     instantsearch.widgets.hits({
       container: '#hits',
