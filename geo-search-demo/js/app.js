@@ -304,7 +304,6 @@ $(document).ready(function () {
 
     var infowindow = new google.maps.InfoWindow({content: message});
     marker.addListener('click', function () {
-      var infoWindow = infowindow.open(marker.get('map'), marker);
       setTimeout(function () {infowindow.close();}, 3000);
     });
   }
