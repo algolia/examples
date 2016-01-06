@@ -1,3 +1,6 @@
 {
-  "extends": "algolia"
+  "extends": "algolia",
+  "rules": {
+    "object-shorthand": 0
+  }
 }
