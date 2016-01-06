@@ -6,7 +6,6 @@ app({
 });
 
 function app(opts) {
-  /* global instantsearch */
   var search = instantsearch({
     appId: opts.appId,
     apiKey: opts.apiKey,
