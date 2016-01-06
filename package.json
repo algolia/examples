@@ -1,0 +1,30 @@
+{
+  "name": "algolia-examples",
+  "version": "1.0.0",
+  "description": "Examples of Algolia technical implementations.",
+  "scripts": {
+    "lint": "eslint . --quiet --no-color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algolia/examples.git"
+  },
+  "keywords": [
+    "algolia",
+    "search"
+  ],
+  "author": "Algolia <support@algolia.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/algolia/examples/issues"
+  },
+  "homepage": "https://github.com/algolia/examples#readme",
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^3.0.0",
+    "eslint-config-algolia": "^4.5.0",
+    "eslint-plugin-algolia": "^1.5.0",
+    "eslint-plugin-react": "^3.14.0"
+  }
+}
