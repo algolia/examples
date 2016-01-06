@@ -40,7 +40,7 @@ header img {
   float: left;
   max-width: 23%;
 }
-#search-input {
+#search-input input {
   font-size: 28px;
   font-weight: 100;
   width: 74%;
@@ -49,14 +49,14 @@ header img {
   border: none;
   border-bottom: 5px solid #eee;
 }
-#search-input, #search-input:focus {
+#search-input input, #search-input input:focus {
   transition: border-color .3s ease-in;
   outline: 0;
 }
-#search-input:focus {
+#search-input input:focus {
   border-color: #ed5565;
 }
-#search-input::-webkit-input-placeholder, #search-input:-moz-placeholder, #search-input:-moz-placeholder, #search-input:-ms-input-placeholder {
+#search-input input::-webkit-input-placeholder, #search-input input:-moz-placeholder, #search-input input:-moz-placeholder, #search-input input:-ms-input-placeholder {
   font-weight: 100;
   color: #999;
 }
