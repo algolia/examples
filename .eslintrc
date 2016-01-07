@@ -1,0 +1,6 @@
+{
+  "extends": "algolia",
+  "rules": {
+    "object-shorthand": 0
+  }
+}
