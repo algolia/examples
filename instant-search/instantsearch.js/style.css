@@ -141,7 +141,6 @@ header img {
   text-decoration: none;
   color: #000;
   border: 1px solid #eee;
-  border-right: none;
 }
 #pagination a:hover {
   background: #f5f5f5;
