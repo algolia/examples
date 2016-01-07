@@ -1,4 +1,5 @@
-// Instantiate the instantsearch application
+/* global instantsearch */
+
 app({
   appId: 'latency',
   apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
