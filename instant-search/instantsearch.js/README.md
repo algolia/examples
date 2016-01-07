@@ -3,6 +3,10 @@ Instant-Search Demo
 
 This is a sample project implementing an instant-search based e-commerce website with [Algolia](http://www.algolia.com). Algolia is a Search API that provides hosted full-text, numerical and faceted search.
 
+## Demo
+Try out the [demo](http://demos.algolia.com/instant-search-demo/)
+![Instant search](instant-search.gif)
+
 ## Features
 * Full-JavaScript/frontend implementation based on [instantsearch.js](https://community.algolia.com/instantsearch.js/)
 * Results page refreshed as you type
@@ -34,10 +38,6 @@ Then, you'll need to replace the demo credentials with your own:
 ## Tutorial
 
 **Follow this [step by step tutorial](https://www.algolia.com/doc/tutorials/instant-search#) (on Algolia.com) to learn how this implementation works** and how it has been built using the [Algolia's Javascript API client](https://github.com/algolia/algoliasearch-client-js) and its [helper](https://github.com/algolia/algoliasearch-helper-js).
-
-## Demo
-Try out the [demo](http://demos.algolia.com/instant-search-demo/)
-![Instant search](instant-search.gif)
 
 ## Data Set
 We've extracted 10,000 products from the [Best Buy Developer API](https://developer.bestbuy.com). You can find the associated documentation [here](https://developer.bestbuy.com/documentation/products-api).
