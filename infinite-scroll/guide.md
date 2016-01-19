@@ -1,6 +1,8 @@
-For very visual websites, such as those built around photo sharing, infinite scroll can be a nice experience for users. And implementing it with Algolia is straightforward.
+For very visual websites, such as those built around photo sharing, infinite scroll can be a nice experience for users. For your users, they can view hundreds of results through only scrolling. For you, you get users who are more engaged and spend more time on your website.
 
-We should note that Algolia only returns 1,000 results through the default search functionality. To get more than 1,000 results, we will have to leverage the `browse` functionality.
+Algolia only returns 1,000 results through the default search functionality. We do this to ensure very fast searches. It is rare that result 1,001 is what the user is looking for, so limiting searched results to this number allows us to speed up our search results.
+
+To get more than 1,000 results, we will have to leverage the `browse` functionality.
 
 Using `browse` doesn't use all of the ranking strategy that search does which means that we don't want to use browse from the outset, as the default search will give us the best results.
 
@@ -10,7 +12,7 @@ This also means that once we get past 1,000 results we will see some duplication
 
 All of our code lives on [github](#TODO) so you can refer to it there. Note that we use webpack to build our JavaScript, but webpack is not a dependency for building infinite scroll searching.
 
-We're going to use [instantsearch.js](#TODO). While not a strict requirement for building infinite scroll, this library lets us set up instant search results quickly and gives us the capability to build custom widgets, which we'll be doing here.
+We're going to use [instantsearch.js](#TODO). While not a strict requirement for building infinite scroll, this library lets us set up instant search results quickly and with as little code as possible. It also gives us the capability to build custom widgets, which we'll be doing here.
 
 Create the following file structure:
 index.html
