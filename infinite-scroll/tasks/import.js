@@ -5,7 +5,7 @@ var algoliasearch = require('algoliasearch')
   , async = require('async');
 
 var data = require('../data.json');
-var chunkedDate = _.chunk(data, 10000);
+var chunkedData = _.chunk(data, 10000);
 
 var args = process.argv.slice(2)
   , applicationId = args[0]
@@ -40,7 +40,19 @@ client.initIndex(`#{indexBase}_price_desc`).setSettings(priceDescSettings);
 client.initIndex(`#{indexBase}_price_asc`).setSettings(priceAscSettings);
 
 // Clear the index so we start from scratch
-index.clear();
+index.clearIndex(function(err){
+  if(err){
+    throw new Error(err);
+  }
+});
+
+var finish = function(err){
+  if(err){
+    throw err;
+  }
+
+  console.log('Imported all products.');
+};
 
 // Index our data
 async.each(chunkedData, index.saveObjects.bind(index), finish);
