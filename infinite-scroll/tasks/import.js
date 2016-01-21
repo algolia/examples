@@ -28,7 +28,7 @@ var priceDescSettings = _.clone(settings, true);
 var priceAscSettings = _.clone(settings, true);
 
 indexSettings.ignorePlurals = true;
-indexSettings.slaves = [`#{indexBase}_price_desc`, `#{indexBase}_price_asc`];
+indexSettings.slaves = [`${indexBase}_price_desc`, `${indexBase}_price_asc`];
 
 priceDescSettings.ranking = ['desc(price)', 'typo', 'geo', 'words', 'proximity', 'attribute', 'exact', 'custom'];
 priceAscSettings.ranking = ['asc(price)', 'typo', 'geo', 'words', 'proximity', 'attribute', 'exact', 'custom'];
