@@ -36,8 +36,8 @@ priceAscSettings.ranking = ['asc(price)', 'typo', 'geo', 'words', 'proximity', '
 index.setSettings(indexSettings);
 
 // We need to initialize the slave indices that we specify above so that we can change their settings
-client.initIndex(`#{indexBase}_price_desc`).setSettings(priceDescSettings);
-client.initIndex(`#{indexBase}_price_asc`).setSettings(priceAscSettings);
+client.initIndex(`${indexBase}_price_desc`).setSettings(priceDescSettings);
+client.initIndex(`${indexBase}_price_asc`).setSettings(priceAscSettings);
 
 // Clear the index so we start from scratch
 index.clearIndex(function(err){
