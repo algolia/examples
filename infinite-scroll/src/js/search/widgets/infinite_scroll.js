@@ -2,7 +2,7 @@ var instantsearch = require('instantsearch.js'),
     Mustache = require('mustache'),
     _ = require('lodash');
 
-var cursor, index, page, nbPages, loading;
+var cursor, index, page, nbPages, loading, helper;
 
 var hitsDiv = document.getElementById('hits');
 
