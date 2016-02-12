@@ -263,6 +263,10 @@ header img {
   color: #999;
 }
 
+#type.facet .ais-refinement-list--checkbox {
+  display: none;
+}
+
 /* NO RESULTS */
 .no-results #pagination, .no-results #sort-by, .no-results #stats, .no-results #facets {
   display: none;
