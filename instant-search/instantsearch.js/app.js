@@ -70,10 +70,11 @@ function app(opts) {
         header: getHeader('Price')
       }
     }),
-    instantsearch.widgets.menu({
+    instantsearch.widgets.refinementList({
       container: '#type',
       attributeName: 'type',
       limit: 10,
+      operator: 'and',
       templates: {
         header: getHeader('Type')
       }
