@@ -24,13 +24,13 @@ function scrolledNearBottom(el, offset) {
 }
 
 function searchNewRecords() {
-  if (scrolledNearBottom(hitsDiv, this.offset)) {
+  if (scrolledNearBottom(document.querySelector('body'), this.offset)) {
     addSearchedRecords.call(this);
   }
 }
 
 function browseNewRecords() {
-  if (scrolledNearBottom(hitsDiv, this.offset)) {
+  if (scrolledNearBottom(document.querySelector('body'), this.offset)) {
     addBrowsedRecords.call(this);
   }
 }
@@ -55,8 +55,8 @@ function appendSearchResults(err, res, state) {
 
   if (page === nbPages - 1 && (this.args.results.nbHits > nbPages * this.args.results.hitsPerPage)) {
     index = helper.client.initIndex(this.args.state.index);
-    hitsDiv.removeEventListener('scroll', searchNewRecords.bind(this));
-    hitsDiv.addEventListener('scroll', browseNewRecords.bind(this));
+    window.removeEventListener('scroll', searchNewRecords.bind(this));
+    window.addEventListener('scroll', browseNewRecords.bind(this));
     addBrowsedRecords.call(this);
   }
 }
@@ -112,8 +112,8 @@ function infiniteScrollWidget(options) {
     init: function () {
       page = undefined;
       nbPages = undefined;
-      hitsDiv.removeEventListener(searchNewRecords);
-      hitsDiv.removeEventListener(browseNewRecords);
+      window.removeEventListener(searchNewRecords);
+      window.removeEventListener(browseNewRecords);
     },
 
     render: function (args) {
@@ -129,7 +129,7 @@ function infiniteScrollWidget(options) {
       };
 
       if (args.results.nbHits) {
-        hitsDiv.addEventListener('scroll', searchNewRecords.bind(scope));
+        window.addEventListener('scroll', searchNewRecords.bind(scope));
       }
 
       initialRender(container, args, templates);
