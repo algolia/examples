@@ -1,8 +1,8 @@
-var instantsearch = require('instantsearch.js'),
-    header = require('./header.js'),
-    infiniteScrollWidget = require('../search/widgets/infinite_scroll.js');
+var instantsearch = require('instantsearch.js');
+var header = require('./header.js');
+var infiniteScrollWidget = require('../search/widgets/infinite_scroll.js');
 
-module.exports = function(indexName) {
+module.exports = function (indexName) {
   return [
     instantsearch.widgets.searchBox({
       container: '#search-input'
@@ -63,4 +63,4 @@ module.exports = function(indexName) {
       offset: 850
     })
   ];
-}
+};

@@ -1,19 +1,17 @@
-'use strict';
-
-var algoliasearch = require('algoliasearch')
-  , _ = require('lodash')
-  , async = require('async');
+var algoliasearch = require('algoliasearch');
+var _ = require('lodash');
+var async = require('async');
 
 var data = require('../data.json');
 var chunkedData = _.chunk(data, 10000);
 
-var args = process.argv.slice(2)
-  , applicationId = args[0]
-  , apiKey = args[1]
-  , indexBase = args[2];
+var args = process.argv.slice(2);
+var applicationId = args[0];
+var apiKey = args[1];
+var indexBase = args[2];
 
-var client = algoliasearch(applicationId, apiKey)
-  , index = client.initIndex(indexBase);
+var client = algoliasearch(applicationId, apiKey);
+var index = client.initIndex(indexBase);
 
 var settings = {
   attributesToIndex: ['brand', 'name', 'categories', 'hierarchicalCategories', 'unordered(description)'],
@@ -40,14 +38,14 @@ client.initIndex(`${indexBase}_price_desc`).setSettings(priceDescSettings);
 client.initIndex(`${indexBase}_price_asc`).setSettings(priceAscSettings);
 
 // Clear the index so we start from scratch
-index.clearIndex(function(err){
-  if(err){
+index.clearIndex(function (err) {
+  if (err) {
     throw new Error(err);
   }
 });
 
-var finish = function(err){
-  if(err){
+var finish = function (err) {
+  if (err) {
     throw err;
   }
 
