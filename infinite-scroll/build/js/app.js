@@ -44599,11 +44599,11 @@
 /* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var instantsearch = __webpack_require__(9),
-	    header = __webpack_require__(444),
-	    infiniteScrollWidget = __webpack_require__(445);
+	var instantsearch = __webpack_require__(9);
+	var header = __webpack_require__(444);
+	var infiniteScrollWidget = __webpack_require__(445);
 
-	module.exports = function(indexName) {
+	module.exports = function (indexName) {
 	  return [
 	    instantsearch.widgets.searchBox({
 	      container: '#search-input'
@@ -44664,7 +44664,7 @@
 	      offset: 850
 	    })
 	  ];
-	}
+	};
 
 
 /***/ },
