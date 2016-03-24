@@ -18,7 +18,21 @@ This is a sample project implementing infinite scroll search results with [Algol
 
 ## Usage
 
-We've included some credentials in the code allowing you to test the demo without any Algolia account. If you want to replicate this demo using your own Algolia credentials, you can use the `tasks/import.js` script to send the data and configure the indices.
+### Build the project
+
+In order to build the application, you need NPM which comes with [Node.js](https://nodejs.org).
+
+In the command line do:
+  - `npm install`  
+  - `npm start`  
+
+Then open your browser and go to http://localhost:8080.
+
+We've included some credentials in the code allowing you to test the demo without any Algolia account.
+
+### Import the data on your Algolia account
+
+If you want to replicate this demo using your own Algolia credentials, you can use the `tasks/import.js` script to send the data and configure the indices.
 
 ```
 $ ./import.js YourApplicationID YourAPIKey YourIndexName
@@ -28,5 +42,3 @@ Then, you'll need to replace the demo credentials with your own:
 - in ```src/js/app.js```, set your own ```APPLICATION_ID``` instead of ```"latency"``` (which is our demo ```APPLICATION_ID```),
 - in ```src/js/app.js```, set your own ```SEARCH_ONLY_API_KEY``` instead of ```"6be0576ff61c053d5f9a3225e2a90f76"```,
 - in ```src/js/app.js```, set your own ```index``` name instead of ```"instant_search"```
-
-We are using [webpack](https://webpack.github.io/) to build our code, but webpack is *not* necessary for use with Algolia or instantsearch.js.

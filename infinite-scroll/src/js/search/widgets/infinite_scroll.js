@@ -112,8 +112,6 @@ function infiniteScrollWidget(options) {
     init: function () {
       page = undefined;
       nbPages = undefined;
-      window.removeEventListener(searchNewRecords);
-      window.removeEventListener(browseNewRecords);
     },
 
     render: function (args) {
