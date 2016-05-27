@@ -4,6 +4,7 @@
 }
 html {
   overflow-y: scroll;
+  background: #FFF;
 }
 header, main, #no-results, footer {
   width: 1000px;
