@@ -14,11 +14,14 @@ function app(opts) {
     urlSync: true
   });
 
-  var widgets = [
+  search.addWidget(
     instantsearch.widgets.searchBox({
       container: '#search-input',
       placeholder: 'Search for products'
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.hits({
       container: '#hits',
       hitsPerPage: 10,
@@ -26,10 +29,16 @@ function app(opts) {
         item: getTemplate('hit'),
         empty: getTemplate('no-results')
       }
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.stats({
       container: '#stats'
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.sortBySelector({
       container: '#sort-by',
       autoHideContainer: true,
@@ -40,11 +49,17 @@ function app(opts) {
       }, {
         name: opts.indexName + '_price_desc', label: 'Highest price'
       }]
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.pagination({
       container: '#pagination',
       scrollTo: '#search-input'
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.refinementList({
       container: '#category',
       attributeName: 'categories',
@@ -53,7 +68,10 @@ function app(opts) {
       templates: {
         header: getHeader('Category')
       }
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.refinementList({
       container: '#brand',
       attributeName: 'brand',
@@ -62,14 +80,20 @@ function app(opts) {
       templates: {
         header: getHeader('Brand')
       }
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.rangeSlider({
       container: '#price',
       attributeName: 'price',
       templates: {
         header: getHeader('Price')
       }
-    }),
+    })
+  );
+
+  search.addWidget(
     instantsearch.widgets.refinementList({
       container: '#type',
       attributeName: 'type',
@@ -79,9 +103,8 @@ function app(opts) {
         header: getHeader('Type')
       }
     })
-  ];
+  );
 
-  widgets.forEach(search.addWidget, search);
   search.start();
 }
 
