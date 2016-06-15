@@ -1,0 +1,4 @@
+[submodule "geo-search-demo"]
+	path = geo-search-demo
+	url = git@github.com:algolia/demo-geo-search.git
+	branch = master
