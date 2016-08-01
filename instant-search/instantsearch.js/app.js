@@ -63,6 +63,7 @@ function app(opts) {
     instantsearch.widgets.refinementList({
       container: '#category',
       attributeName: 'categories',
+      sortBy: ['isRefined', 'count:desc', 'name:asc'],
       limit: 10,
       operator: 'or',
       templates: {
@@ -75,6 +76,7 @@ function app(opts) {
     instantsearch.widgets.refinementList({
       container: '#brand',
       attributeName: 'brand',
+      sortBy: ['isRefined', 'count:desc', 'name:asc'],
       limit: 10,
       operator: 'or',
       templates: {
@@ -97,6 +99,7 @@ function app(opts) {
     instantsearch.widgets.refinementList({
       container: '#type',
       attributeName: 'type',
+      sortBy: ['isRefined', 'count:desc', 'name:asc'],
       limit: 10,
       operator: 'and',
       templates: {
