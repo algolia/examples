@@ -20,9 +20,9 @@
 
 <!-- Initialize autocomplete menu -->
 <script>
-var client = algoliasearch('Q71HM8430Y', '7f42b7cbd41474bf777414c24302d4a4')
-var players = client.initIndex('players');
-var teams = client.initIndex('teams');
+var client = algoliasearch('YourApplicationID', 'YourAPIKey');
+var players = client.initIndex('YourIndex1');
+var teams = client.initIndex('YourIndex2');
         
 autocomplete('#aa-search-input', {}, [
     {
