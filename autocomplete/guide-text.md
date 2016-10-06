@@ -68,7 +68,7 @@ Tip: Setting `debug: true` will prevent auto-closing of the menu and make stylin
 
 ## Highlighting Results
 
-Technically, suggestion attributes can be accessed in the suggestion templating function at `suggestion.attribute_name`. However, we recommend accessing the content of suggestion attributes at `suggestion._highlightResult.attribute_name.value`. As a result, matched words will be wrapped with an <em> HTML tag, which can be styled to indicate to users what portion of their query matches a suggestion.
+Technically, suggestion attributes can be accessed in the suggestion templating function at `suggestion.attribute_name`. However, we recommend accessing the content of suggestion attributes at `suggestion._highlightResult.attribute_name.value`. As a result, matched words will be wrapped with an HTML tag, which can be styled to indicate to users what portion of their query matches a suggestion.
 
 
 # Leveraging Custom Events
