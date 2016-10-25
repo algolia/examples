@@ -6,8 +6,8 @@ Set of sample code samples which highlight different way to use Algolia.
 
 * Algolia Instant Search Result page + Google AdSense [[link]](/instant-search/google-adsense/)
 * Algolia Instant Search Result page built with jQuery [[link]](/instant-search/jquery/)
-* Algolia Instant Search Result page on SmashingMagazine [[link]](/instant-search/smashingmagazine/)
-* Geo Search demo  [[link]](/geo-search-demo/)
+* Algolia Instant Search Result page on SmashingMagazine [[link]](https://github.com/algolia/demo-smashingmagazine/)
+* Geo Search demo  [[link]](https://github.com/algolia/demo-geo-search)
 * Autocomplete within a Textarea / input [[link]](/textarea-autocomplete/)
 
 **Mobile Native**
