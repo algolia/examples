@@ -1,0 +1,143 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
+//Variables
+$search-icon-size: 16px;
+$search-component-width: 300px;
+$font-stack: 'Montserrat',
+sans-serif;
+$font-size: 11px;
+$highlight-color: #3a96cf;
+$light-grey: #f1f1f1;
+$grey: #e4e4e4;
+$dark-grey: #333;
+//Search input
+.aa-input {
+    &-container {
+        display: inline-block;
+        position: relative;
+    }
+    &-search {
+        width: $search-component-width;
+        padding: 12px ($search-icon-size + 12px) 12px 12px;
+        border: 3px solid $grey;
+        border-radius: 4px;
+        transition: .2s;
+        font-family: $font-stack;
+        box-shadow: 4px 4px 0 rgba($light-grey, .35);
+        font-size: $font-size;
+        box-sizing: border-box;
+        color: $dark-grey;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+        }
+        &:focus {
+            outline: 0;
+            border-color: $highlight-color;
+            box-shadow: 4px 4px 0 rgba($highlight-color, .1);
+        }
+    }
+    &-icon {
+        height: $search-icon-size;
+        width: $search-icon-size;
+        position: absolute;
+        top: 50%;
+        right: $search-icon-size;
+        transform: translateY(-50%);
+        fill: $grey;
+        pointer-events: none;
+    }
+}
+
+//Input hint text
+.aa-hint {
+    color: $grey;
+}
+
+//Dropdown menu container - class can be customized by setting dropdownMenu in cssClasses
+.aa-dropdown-menu {
+    background-color: #fff;
+    border: 3px solid rgba($grey, .6);
+    border-top-width: 0;
+    font-family: $font-stack;
+    width: $search-component-width;
+    margin-top: 10px;
+    box-shadow: 4px 4px 0 rgba($light-grey, .35);
+    font-size: $font-size;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+//Individual results
+.aa-suggestion {
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: .2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:hover,
+    &.aa-cursor {
+        background-color: rgba($light-grey, .35);
+    }
+    >div {
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+        width: 100%;
+    }
+    span:first-child {
+        color: $dark-grey;
+        em {
+            @extend %highlighted-result;
+        }
+    }
+    span:last-child {
+        text-transform: uppercase;
+        color: #a9a9a9;
+        em {
+            @extend %highlighted-result;
+        }
+    }
+    img {
+            max-width: 80px;
+    margin-right: 10px;
+    }
+}
+
+.aa-suggestions {
+    &-category {
+    text-transform: uppercase;
+    border-bottom: 3px solid rgba($grey, .6);
+    border-top: 3px solid rgba($grey, .6);
+    padding: 10px;
+    color: #a9a9a9;
+    padding: 6px 12px;
+    text-align: left;
+    }
+}
+
+//Highlighted result style
+%highlighted-result {
+    font-weight: 700;
+    font-style: normal;
+    background-color: rgba($highlight-color, .1);
+    padding: 2px 0 2px 2px;
+}
+
+.aa-dropdown-menu {
+    width: 600px;
+    > div {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+    }
+}
+    
+    .aa-empty {
+        padding: 6px 12px;
+    } 
