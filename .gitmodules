@@ -6,3 +6,7 @@
 	path = instant-search/smashingmagazine
 	url = git@github.com:algolia/demo-smashingmagazine.git
 	branch = master
+[submodule "infinite-scroll"]
+	path = infinite-scroll
+	url = git@github.com:algolia/demo-infinite-scroll.git
+	branch = master
