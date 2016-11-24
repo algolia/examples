@@ -1,7 +1,3 @@
-[submodule "geo-search-demo"]
-	path = geo-search-demo
-	url = git@github.com:algolia/demo-geo-search.git
-	branch = master
 [submodule "instant-search/smashingmagazine"]
 	path = instant-search/smashingmagazine
 	url = git@github.com:algolia/demo-smashingmagazine.git
@@ -13,4 +9,8 @@
 [submodule "textarea-autocomplete"]
 	path = textarea-autocomplete
 	url = git@github.com:algolia/demo-textarea-autocomplete.git
+	branch = master
+[submodule "geo-search"]
+	path = geo-search
+	url = git@github.com:algolia/demo-geo-search.git
 	branch = master
