@@ -208,7 +208,7 @@ $(document).ready(function () {
     for (i in algoliaHelper.state.facetsRefinements) {
       if ({}.hasOwnProperty(algoliaHelper.state.facetsRefinements, i)) {
         filters.push({
-          class: 'toggle-refine',
+          'class': 'toggle-refine',
           facet: i, facet_value: algoliaHelper.state.facetsRefinements[i],
           label: FACETS_LABELS[i] + ': ',
           label_value: algoliaHelper.state.facetsRefinements[i]
@@ -220,7 +220,7 @@ $(document).ready(function () {
         for (j in algoliaHelper.state.disjunctiveFacetsRefinements[i]) {
           if ({}.hasOwnProperty(algoliaHelper.state.disjunctiveFacetsRefinements[i], j)) {
             filters.push({
-              class: 'toggle-refine',
+              'class': 'toggle-refine',
               facet: i,
               facet_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j],
               label: FACETS_LABELS[i] + ': ',
@@ -235,7 +235,7 @@ $(document).ready(function () {
         for (j in algoliaHelper.state.numericRefinements[i]) {
           if ({}.hasOwnProperty(algoliaHelper.state.numericRefinements[i], j)) {
             filters.push({
-              class: 'remove-numeric-refine',
+              'class': 'remove-numeric-refine',
               facet: i,
               facet_value: j,
               label: FACETS_LABELS[i] + ' ',
@@ -286,7 +286,9 @@ $(document).ready(function () {
     var URLParams = algoliasearchHelper.url.getStateFromQueryString(URLString);
     if (URLParams.query) $searchInput.val(URLParams.query);
     if (URLParams.index) $sortBySelect.val(URLParams.index.replace(INDEX_NAME, ''));
-    algoliaHelper.overrideStateWithoutTriggeringChangeEvent(algoliaHelper.state.setQueryParameters(URLParams));
+    algoliaHelper.overrideStateWithoutTriggeringChangeEvent(
+      algoliaHelper.state.setQueryParameters(URLParams)
+    );
   }
 
   var URLHistoryTimer = Date.now();
@@ -300,7 +302,10 @@ $(document).ready(function () {
     var URLParams = window.location.search.slice(1);
     var nonAlgoliaURLParams = algoliasearchHelper.url.getUnrecognizedParametersInQueryString(URLParams);
     var nonAlgoliaURLHash = window.location.hash;
-    var helperParams = algoliaHelper.getStateAsQueryString({filters: trackedParameters, moreAttributes: nonAlgoliaURLParams});
+    var helperParams = algoliaHelper.getStateAsQueryString({
+      filters: trackedParameters,
+      moreAttributes: nonAlgoliaURLParams
+    });
     if (URLParams === helperParams) return;
 
     var now = Date.now();

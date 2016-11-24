@@ -1,4 +1,4 @@
-/* global $, Hogan, algoliasearch, algoliasearchHelper */
+/* global $, Hogan, algoliasearch */
 
 $(document).ready(function () {
   // INITIALIZATION
