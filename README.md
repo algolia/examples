@@ -8,7 +8,8 @@ Set of sample code samples which highlight different way to use Algolia.
 * [Algolia Instant Search Result page built with jQuery](/instant-search/jquery/)
 * [Algolia Instant Search Result page on SmashingMagazine](https://github.com/algolia/demo-smashingmagazine/)
 * [Geo Search demo](https://github.com/algolia/demo-geo-search)
-* [Autocomplete within a Textarea](https://community.algolia.com/textarea-autocomplete-demo/)
+* [Autocomplete within a Textarea](https://community.algolia.com/demo-textarea-autocomplete/)
+* [Infinite scroll](https://community.algolia.com/demo-infinite-scroll/)
 
 
 ## Bugs / Feedbacks
