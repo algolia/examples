@@ -10,3 +10,7 @@
 	path = infinite-scroll
 	url = git@github.com:algolia/demo-infinite-scroll.git
 	branch = master
+[submodule "textarea-autocomplete"]
+	path = textarea-autocomplete
+	url = git@github.com:algolia/textarea-autocomplete-demo.git
+	branch = master
