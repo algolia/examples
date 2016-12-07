@@ -1,0 +1,14 @@
+{
+  "attributesToIndex": [
+    "unordered(title)",
+    "unordered(actors)"
+  ],
+  "attributesForFaceting": [
+    "actors",
+    "genre",
+    "watch_list"
+  ],
+  "customRanking": [
+    "desc(score)"
+  ]
+}

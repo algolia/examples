@@ -1,0 +1,249 @@
+
+
+/* GENERAL
+// ------------------------- */
+
+* {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #151315;
+}
+.clear:after {
+  display: table;
+  clear: both;
+  content: '';
+}
+h2.section-title {
+  font-size: 17px;
+  margin: 0 60px -10px;
+  color: #999;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* HEADER - SEARCH INPUT
+// ------------------------- */
+
+header {
+  margin: 30px 60px;
+  padding: 0;
+}
+#search-input input {
+  font-size: 28px;
+  font-weight: 100;
+  width: 100%;
+  padding: 6px;
+  color: #fff;
+  border: none;
+  border-bottom: 5px solid #333;
+  background: none;
+}
+#search-input input,
+#search-input input:focus {
+  transition: border-color .3s ease-in;
+  outline: 0;
+}
+#search-input input:focus {
+  border-color: #f46353;
+}
+#search-input input::-webkit-input-placeholder,
+#search-input input:-moz-placeholder,
+#search-input input:-moz-placeholder,
+#search-input input:-ms-input-placeholder {
+  font-weight: 100;
+  color: #999;
+}
+#search-input-icon {
+  position: relative;
+}
+#search-input-icon:before {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+  width: 20px;
+  height: 20px;
+  content: '';
+  cursor: default;
+  background: url(img/search_icon.png) no-repeat;
+  background-size: cover;
+}
+
+
+/* PERSONALIZATION SCENARIO */
+#perso-scenario {
+  margin: 20px 60px;
+}
+#perso-scenario .perso-scenarii {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width: 23.5%;
+  margin: 0 1%;
+  padding: 12px;
+  padding-left: 70px;
+  text-align: left;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  outline: 0;
+  background: rgba(0,0,0,.15);
+}
+#perso-scenario .perso-scenarii:hover {
+  cursor: pointer;
+}
+#perso-scenario .perso-scenarii:first-child {
+  margin-left: 0;
+}
+#perso-scenario .perso-scenarii:last-child {
+  margin-right: 0;
+}
+#perso-scenario .perso-scenarii.active {
+  border-color: #f46353;
+  background: #222;
+}
+#perso-scenario .perso-scenarii.active:hover {
+  cursor: inherit;
+}
+.perso-scenarii img {
+  position: absolute;
+  left: 10px;
+  float: left;
+  border-radius: 25px;
+}
+.perso-scenarii h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+.perso-scenarii p {
+  font-size: 12px;
+  margin: 0 0 5px;
+  color: #999;
+}
+.perso-scenarii p:last-child {
+  margin-bottom: 0;
+}
+.perso-scenarii p .perso-flag {
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1;
+  display: inline-block;
+  margin: 0 3px 3px 0;
+  padding: 3px 6px 4px;
+  color: #fff;
+  border-radius: 2px;
+  background: rgba(255,255,255,.15);
+}
+
+
+/* HITS
+// ------------------------- */
+
+#hits {
+  margin: 20px 60px;
+  min-height: 300px;
+}
+.hit::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  background-image:    -moz-linear-gradient(top, rgba(0,0,0,0) 30%, rgba(0,0,0,.8));
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 30%, rgba(0,0,0,.8));
+  background-image:         linear-gradient(to bottom, rgba(0,0,0,0) 30%, rgba(0,0,0,.8));
+}
+.hit {
+  position: relative;
+  float: left;
+  width: 16.66%;
+  height: 290px;
+  margin-bottom: 30px;
+}
+.hit-image,
+.hit-image img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 380px;
+}
+.hit-content {
+  font-size: 11px;
+  font-weight: 300;
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+  width: 94%;
+  padding: 3%;
+  vertical-align: top;
+  color: white;
+}
+.hit-content .hit-name {
+  font-weight: normal;
+}
+.hit-content .hit-name,
+.hit-content .hit-actors {
+  margin: 0;
+}
+.hit-content .hit-actors {
+  color: #bbb;
+}
+.hit-content em {
+  font-style: normal;
+  background: rgba(230, 43, 30, .55);
+}
+.hit-flags {
+  position: absolute;
+  top: 0;
+  width: 94%;
+  padding: 3%;
+  text-align: right;
+}
+.hit-flags .hit-flag {
+  font-size: 10px;
+  line-height: 1;
+  display: inline-block;
+  margin: 0 3px 0 0;
+  padding: 3px 6px 4px;
+  color: #eee;
+  border: 1px solid #f46353;
+  border-radius: 2px;
+  background: rgba(0,0,0,.5);
+}
+
+
+/* NO-RESULTS
+// ------------------------- */
+
+#no-results-message {
+  text-align: center;
+  margin-top: 60px;
+}
+#no-results-message p {
+  font-size: 28px;
+  font-weight: 100;
+  color: #999999;
+}
+
+
+/* FOOTER
+// ------------------------- */
+
+footer {
+  font-size: 14px;
+  margin: 30px 60px;
+  color: #999;
+}
+footer a {
+  text-decoration: none;
+  color: #f46353;
+}
+footer a:hover {
+  text-decoration: underline;
+  color: #f46353;
+}

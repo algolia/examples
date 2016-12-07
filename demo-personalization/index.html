@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <title>Personalization demo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <!--[if lte IE 9]>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+
+  <!-- INTERFACE -->
+  <header>
+    <div id="search-input"></div>
+    <div id="search-input-icon"></div>
+  </header>
+
+  <main class="clear">
+    <h2 class="section-title">User Profile</h2>
+    <div id="perso-scenario" class="clear">
+      <button class="perso-scenarii" data-genres="Documentary">
+        <img src="https://www.algolia.com/static_assets/images/about-julien.jpg" width="50" height="50"/>
+        <h3>Julien</h3>
+        <p>Rank higher the movies from:</p>
+        <p><span class="perso-flag">Genre: Documentary</span></p>
+      </button>
+      <button class="perso-scenarii" data-genres="Drama" data-actors="Matt Damon">
+        <img src="https://www.algolia.com/static_assets/images/about-nicolas.jpg" width="50" height="50"/>
+        <h3>Nicolas</h3>
+        <p>Rank higher the movies from:</p>
+        <p><span class="perso-flag">Genre: Drama</span><span class="perso-flag">Actor: Matt Damon</span></p>
+      </button>
+      <button class="perso-scenarii" data-user="user_3">
+        <img src="https://www.algolia.com/static_assets/images/about-sylvain.jpg" width="50" height="50"/>
+        <h3>Sylvain</h3>
+        <p>Rank higher the movies from:</p>
+        <p><span class="perso-flag">Movies in watch-list</span></p>
+      </button>
+      <button class="perso-scenarii" data-user="user_4" data-genres="Action">
+        <img src="https://www.algolia.com/static_assets/images/about-gaetan.jpg" width="50" height="50"/>
+        <h3>Gaetan</h3>
+        <p>Rank higher the movies from:</p>
+        <p><span class="perso-flag">Movies in watch-list</span><span class="perso-flag">Genre: Action</span></p>
+      </button>
+    </div>
+
+    <h2 class="section-title">Movies</h2>
+    <div id="hits"></div>
+  </main>
+
+  <footer>
+    Source Code on <a href="https://github.com/algolia/demo-personalization">Github</a> -
+    Powered by <a href="https://www.algolia.com">Algolia</a>
+  </footer>
+  <!-- /INTERFACE -->
+
+
+  <!-- TEMPLATES -->
+  <script type="text/html" id="hit-template">
+    <div class="hit">
+      <div class="hit-flags">
+        {{#in_watch_list}}<span class="hit-flag">Watch list</span>{{/in_watch_list}}
+        {{#genres_bonus}}<span class="hit-flag">{{.}}</span>{{/genres_bonus}}
+        {{#actors_bonus}}<span class="hit-flag">{{.}}</span>{{/actors_bonus}}
+      </div>
+      <div class="hit-content">
+        <h2 class="hit-name">{{{_highlightResult.title.value}}}</h2>
+        <p class="hit-actors">{{#_highlightResult.actors}}{{{value}}}{{/_highlightResult.actors}}</p>
+      </div>
+      <div class="hit-image">
+        <img src="{{image}}" alt="{{title}}">
+      </div>
+    </div>
+  </script>
+
+  <script type="text/html" id="no-results-template">
+    <div id="no-results-message">
+      <p>We didn't find any results for the search <em>"{{query}}"</em>.</p>
+    </div>
+  </script>
+  <!-- /TEMPLATES -->
+
+
+  <!-- SCRIPTS -->
+  <script src="//cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+  <script src="app.js"></script>
+  <!-- /SCRIPTS -->
+</body>
+</html>

@@ -1,4 +1,8 @@
-[submodule "geo-search-demo"]
-	path = geo-search-demo
+[submodule "instant-search/smashingmagazine"]
+	path = instant-search/smashingmagazine
+	url = git@github.com:algolia/demo-smashingmagazine.git
+	branch = master
+[submodule "geo-search"]
+	path = geo-search
 	url = git@github.com:algolia/demo-geo-search.git
 	branch = master
