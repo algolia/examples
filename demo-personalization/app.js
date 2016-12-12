@@ -83,11 +83,18 @@ function app(opts) {
     init: function(params) {
       $(document).on('click', '.perso-scenarii', function(e) {
         e.preventDefault();
-        $('.perso-scenarii').removeClass("active");
-        $(this).addClass("active");
-        user_bonus = $(this).data("user");
-        actors_bonus = $(this).data("actors") ? $(this).data("actors").split(",") : [];
-        genres_bonus = $(this).data("genres") ? $(this).data("genres").split(",") : [];
+        if ($(this).hasClass("active")) {
+          $(this).removeClass("active");
+          user_bonus = "";
+          actors_bonus = [];
+          genres_bonus = [];
+        } else {
+          $('.perso-scenarii').removeClass("active");
+          $(this).addClass("active");
+          user_bonus = $(this).data("user");
+          actors_bonus = $(this).data("actors") ? $(this).data("actors").split(",") : [];
+          genres_bonus = $(this).data("genres") ? $(this).data("genres").split(",") : [];
+        }
         params.helper.setQueryParameter('optionalFacetFilters', optionalFiltersToAlgoliaParam()).search();
       });
     }
