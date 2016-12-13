@@ -32,6 +32,7 @@ h2.section-title {
 
 header {
   margin: 30px 60px;
+  width: 1160px;
   padding: 0;
 }
 #search-input input {
@@ -78,6 +79,7 @@ header {
 /* PERSONALIZATION SCENARIO */
 #perso-scenario {
   margin: 20px 60px;
+  width: 1160px;
 }
 #perso-scenario .perso-scenarii {
   position: relative;
@@ -146,6 +148,7 @@ header {
 
 #hits {
   margin: 20px 60px;
+  width: 1160px;
   min-height: 300px;
 }
 .hit::before {
