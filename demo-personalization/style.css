@@ -21,7 +21,9 @@ body {
 }
 h2.section-title {
   font-size: 17px;
-  margin: 0 60px -10px;
+  width: 94%;
+  max-width: 1600px;
+  margin: 0 auto -10px;
   color: #999;
   -webkit-font-smoothing: antialiased;
 }
@@ -31,8 +33,9 @@ h2.section-title {
 // ------------------------- */
 
 header {
-  margin: 30px 60px;
-  width: 1160px;
+  width: 94%;
+  max-width: 1600px;
+  margin: 30px auto;
   padding: 0;
 }
 #search-input input {
@@ -75,18 +78,18 @@ header {
   background-size: cover;
 }
 
-
 /* PERSONALIZATION SCENARIO */
 #perso-scenario {
-  margin: 20px 60px;
-  width: 1160px;
+  display: flex;
+  width: 96%;
+  max-width: 1600px;
+  margin: 20px auto;
+  flex-wrap: wrap;
 }
 #perso-scenario .perso-scenarii {
   position: relative;
-  float: left;
-  box-sizing: border-box;
-  width: 23.5%;
-  margin: 0 1%;
+  min-width: 260px;
+  margin: 0 1% .5%;
   padding: 12px;
   padding-left: 70px;
   text-align: left;
@@ -95,67 +98,69 @@ header {
   border-radius: 4px;
   outline: 0;
   background: rgba(0,0,0,.15);
+  flex-grow: 1;
 }
 #perso-scenario .perso-scenarii:hover {
   cursor: pointer;
 }
-#perso-scenario .perso-scenarii:first-child {
+/*#perso-scenario .perso-scenarii:first-child {
   margin-left: 0;
 }
 #perso-scenario .perso-scenarii:last-child {
   margin-right: 0;
-}
-#perso-scenario .perso-scenarii.active {
-  border-color: #f46353;
-  background: #222;
-}
-#perso-scenario .perso-scenarii.active:hover {
-  cursor: inherit;
-}
-.perso-scenarii img {
-  position: absolute;
-  left: 10px;
-  float: left;
-  border-radius: 25px;
-}
-.perso-scenarii h3 {
-  font-size: 14px;
-  margin: 0 0 8px;
-}
-.perso-scenarii p {
-  font-size: 12px;
-  margin: 0 0 5px;
-  color: #999;
-}
-.perso-scenarii p:last-child {
-  margin-bottom: 0;
-}
-.perso-scenarii p .perso-flag {
-  font-size: 10px;
-  font-style: normal;
-  line-height: 1;
-  display: inline-block;
-  margin: 0 3px 3px 0;
-  padding: 3px 6px 4px;
-  color: #fff;
-  border-radius: 2px;
-  background: rgba(255,255,255,.15);
-}
+  }*/
+  #perso-scenario .perso-scenarii.active {
+    border-color: #f46353;
+    background: #222;
+  }
+  #perso-scenario .perso-scenarii.active:hover {
+    cursor: inherit;
+  }
+  .perso-scenarii img {
+    position: absolute;
+    left: 10px;
+    float: left;
+    border-radius: 25px;
+  }
+  .perso-scenarii h3 {
+    font-size: 14px;
+    margin: 0 0 8px;
+  }
+  .perso-scenarii p {
+    font-size: 12px;
+    margin: 0 0 5px;
+    color: #999;
+  }
+  .perso-scenarii p:last-child {
+    margin-bottom: 0;
+  }
+  .perso-scenarii p .perso-flag {
+    font-size: 10px;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    margin: 0 3px 3px 0;
+    padding: 3px 6px 4px;
+    color: #fff;
+    border-radius: 2px;
+    background: rgba(255,255,255,.15);
+  }
 
 
 /* HITS
 // ------------------------- */
 
 #hits {
-  margin: 20px 60px;
-  width: 1160px;
+  width: 94%;
+  max-width: 1600px;
   min-height: 300px;
+  margin: 20px auto;
 }
 .hit::before {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 3px;
   left: 0;
   content: '';
   background-image:    -moz-linear-gradient(top, rgba(0,0,0,0) 30%, rgba(0,0,0,.8));
@@ -164,16 +169,23 @@ header {
 }
 .hit {
   position: relative;
-  float: left;
-  width: 16.66%;
-  height: 290px;
+  width: 100%;
+  min-width: 180px;
+  max-width: 280px;
   margin-bottom: 30px;
+}
+.ais-hits {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.ais-hits--item {
+  flex-grow: 1;
 }
 .hit-image,
 .hit-image img {
   width: 100%;
   max-width: 100%;
-  max-height: 380px;
 }
 .hit-content {
   font-size: 11px;
@@ -224,13 +236,13 @@ header {
 // ------------------------- */
 
 #no-results-message {
-  text-align: center;
   margin-top: 60px;
+  text-align: center;
 }
 #no-results-message p {
   font-size: 28px;
   font-weight: 100;
-  color: #999999;
+  color: #999;
 }
 
 
