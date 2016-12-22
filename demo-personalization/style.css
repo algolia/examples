@@ -103,48 +103,42 @@ header {
 #perso-scenario .perso-scenarii:hover {
   cursor: pointer;
 }
-/*#perso-scenario .perso-scenarii:first-child {
-  margin-left: 0;
+#perso-scenario .perso-scenarii.active {
+  border-color: #f46353;
+  background: #222;
 }
-#perso-scenario .perso-scenarii:last-child {
-  margin-right: 0;
-  }*/
-  #perso-scenario .perso-scenarii.active {
-    border-color: #f46353;
-    background: #222;
-  }
-  #perso-scenario .perso-scenarii.active:hover {
-    cursor: inherit;
-  }
-  .perso-scenarii img {
-    position: absolute;
-    left: 10px;
-    float: left;
-    border-radius: 25px;
-  }
-  .perso-scenarii h3 {
-    font-size: 14px;
-    margin: 0 0 8px;
-  }
-  .perso-scenarii p {
-    font-size: 12px;
-    margin: 0 0 5px;
-    color: #999;
-  }
-  .perso-scenarii p:last-child {
-    margin-bottom: 0;
-  }
-  .perso-scenarii p .perso-flag {
-    font-size: 10px;
-    font-style: normal;
-    line-height: 1;
-    display: inline-block;
-    margin: 0 3px 3px 0;
-    padding: 3px 6px 4px;
-    color: #fff;
-    border-radius: 2px;
-    background: rgba(255,255,255,.15);
-  }
+#perso-scenario .perso-scenarii.active:hover {
+  cursor: inherit;
+}
+.perso-scenarii img {
+  position: absolute;
+  left: 10px;
+  float: left;
+  border-radius: 25px;
+}
+.perso-scenarii h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+.perso-scenarii p {
+  font-size: 12px;
+  margin: 0 0 5px;
+  color: #999;
+}
+.perso-scenarii p:last-child {
+  margin-bottom: 0;
+}
+.perso-scenarii p .perso-flag {
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1;
+  display: inline-block;
+  margin: 0 3px 3px 0;
+  padding: 3px 6px 4px;
+  color: #fff;
+  border-radius: 2px;
+  background: rgba(255,255,255,.15);
+}
 
 
 /* HITS
@@ -160,7 +154,7 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 3px;
+  bottom: 2px;
   left: 0;
   content: '';
   background-image:    -moz-linear-gradient(top, rgba(0,0,0,0) 30%, rgba(0,0,0,.8));
@@ -170,8 +164,6 @@ header {
 .hit {
   position: relative;
   width: 100%;
-  min-width: 180px;
-  max-width: 280px;
   margin-bottom: 30px;
 }
 .ais-hits {
@@ -181,6 +173,8 @@ header {
 }
 .ais-hits--item {
   flex-grow: 1;
+  min-width: 180px;
+  max-width: 280px;
 }
 .hit-image,
 .hit-image img {
