@@ -154,7 +154,7 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 2px;
+  bottom: 0;
   left: 0;
   content: '';
   background-image:    -moz-linear-gradient(top, rgba(0,0,0,0) 30%, rgba(0,0,0,.8));
@@ -163,8 +163,14 @@ header {
 }
 .hit {
   position: relative;
-  width: 100%;
-  margin-bottom: 30px;
+ display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-height: 250px;
+    background-size: cover;
+    background-position: center center;
 }
 .ais-hits {
   display: flex;
@@ -173,23 +179,34 @@ header {
 }
 .ais-hits--item {
   flex-grow: 1;
-  min-width: 180px;
-  max-width: 280px;
+      flex-basis: 12.5%;
+    max-width: 12.5%;
+        margin-bottom: 30px;
+        display: flex;
 }
-.hit-image,
-.hit-image img {
-  width: 100%;
-  max-width: 100%;
+
+@media (max-width: 1100px) {
+  .ais-hits--item  {
+   flex-basis: 20%;
+    max-width: 20%;
+  }
+}
+@media (max-width: 600px) {
+  .ais-hits--item  {
+   flex-basis: 33.333%;
+    max-width: 33.333%;
+  }
+}
+.ais-hits--item:before {
+        content: "";
+    padding-bottom: 165%;
+    display: inline-block;
 }
 .hit-content {
   font-size: 11px;
   font-weight: 300;
-  position: absolute;
-  bottom: 0;
-  display: inline-block;
-  width: 94%;
   padding: 3%;
-  vertical-align: top;
+        z-index: 10;
   color: white;
 }
 .hit-content .hit-name {
@@ -207,11 +224,8 @@ header {
   background: rgba(230, 43, 30, .55);
 }
 .hit-flags {
-  position: absolute;
-  top: 0;
-  width: 94%;
   padding: 3%;
-  text-align: right;
+        align-self: flex-end;
 }
 .hit-flags .hit-flag {
   font-size: 10px;

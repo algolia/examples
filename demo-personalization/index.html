@@ -61,7 +61,7 @@
 
   <!-- TEMPLATES -->
   <script type="text/html" id="hit-template">
-    <div class="hit">
+    <div class="hit" style="background-image: url({{image}})">
       <div class="hit-flags">
         {{#in_watch_list}}<span class="hit-flag">Watch list</span>{{/in_watch_list}}
         {{#genres_bonus}}<span class="hit-flag">{{.}}</span>{{/genres_bonus}}
@@ -70,9 +70,6 @@
       <div class="hit-content">
         <h2 class="hit-name">{{{_highlightResult.title.value}}}</h2>
         <p class="hit-actors">{{#_highlightResult.actors}}{{{value}}}{{/_highlightResult.actors}}</p>
-      </div>
-      <div class="hit-image">
-        <img src="{{image}}" alt="{{title}}">
       </div>
     </div>
   </script>
