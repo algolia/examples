@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "^0.8.5"
+  },
+  "dependencies": {
+    "lodash": "^4.16.6",
+    "qs": "^6.3.0",
+    "rc-slider": "^5.4.3",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-instantsearch": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && rsync -av build . && rm -rf build"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}
