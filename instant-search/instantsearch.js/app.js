@@ -79,6 +79,12 @@ function app(opts) {
       sortBy: ['isRefined', 'count:desc', 'name:asc'],
       limit: 10,
       operator: 'or',
+      searchForFacetValues: {
+        placeholder: 'Search for brands',
+        templates: {
+          noResults: '<div class="sffv_no-results">No matching brands.</div>'
+        }
+      },
       templates: {
         header: getHeader('Brand')
       }
