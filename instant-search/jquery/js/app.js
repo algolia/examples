@@ -10,7 +10,7 @@ $(document).ready(function () {
   var INDEX_NAME = 'instant_search';
   var PARAMS = {
     hitsPerPage: 10,
-    maxValuesPerFacet: 8,
+    maxValuesPerFacet: 10,
     facets: ['type'],
     disjunctiveFacets: ['categories', 'brand', 'price']
   };
