@@ -15,6 +15,7 @@ $(document).ready(function () {
     disjunctiveFacets: ['categories', 'brand', 'price']
   };
   var FACETS_SLIDER = ['price'];
+  var SEARCHABLE_FACETS = ['brand'];
   var FACETS_ORDER_OF_DISPLAY = ['categories', 'brand', 'price', 'type'];
   var FACETS_LABELS = {categories: 'Category', brand: 'Brand', price: 'Price', type: 'Type'};
 
@@ -36,6 +37,8 @@ $(document).ready(function () {
   var hitTemplate = Hogan.compile($('#hit-template').text());
   var statsTemplate = Hogan.compile($('#stats-template').text());
   var facetTemplate = Hogan.compile($('#facet-template').text());
+  var sffvTemplate = Hogan.compile($('#sffv-template').text());
+  var sffvResultsTemplate = Hogan.compile($('#sffv-results-template').text());
   var sliderTemplate = Hogan.compile($('#slider-template').text());
   var paginationTemplate = Hogan.compile($('#pagination-template').text());
   var noResultsTemplate = Hogan.compile($('#no-results-template').text());
@@ -52,6 +55,24 @@ $(document).ready(function () {
     algoliaHelper.setQuery(query).search();
   })
   .focus();
+
+  // Search for facet value input binding
+  $(document).on('input', '.sffv-input', function() {
+    var $this = $(this);
+    var query = $this.val();
+    if(query === '') {
+      algoliaHelper.search();
+    } else {
+      var facet = $this.data('facet');
+      var isDisjunctive = PARAMS.disjunctiveFacets.indexOf(facet) !== -1;
+      var $resultList = $('.facet-list-' + facet);
+      algoliaHelper.searchForFacetValues(facet, query).then(function(content) {
+        content.facet = facet;
+        content.disjunctive = isDisjunctive;
+        $resultList.html(sffvResultsTemplate.render(content));
+      });
+    }
+  });
 
   // Search errors
   algoliaHelper.on('error', function (error) {
@@ -116,6 +137,15 @@ $(document).ready(function () {
         facetContent.from = Math.min(facetContent.max, Math.max(facetContent.min, from));
         facetContent.to = Math.min(facetContent.max, Math.max(facetContent.min, to));
         facetsHtml += sliderTemplate.render(facetContent);
+      } else if ($.inArray(facetName, SEARCHABLE_FACETS) !== -1) {
+        // Search in facet values
+        facetContent = {
+          facet: facetName,
+          title: FACETS_LABELS[facetName],
+          values: content.getFacetValues(facetName, {sortBy: ['isRefined:desc', 'count:desc']}),
+          disjunctive: $.inArray(facetName, PARAMS.disjunctiveFacets) !== -1
+        };
+        facetsHtml += sffvTemplate.render(facetContent);
       } else {
         // Conjunctive + Disjunctive facets
         facetContent = {
