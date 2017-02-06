@@ -9,8 +9,8 @@
     "url": "https://github.com/algolia/instant-search-demo/issues"
   },
   "scripts": {
-    "dev": "browser-sync start --server . --files 'style.css,app.js,img/*,index.html' --no-open",
-    "lint": "eslint app.js --quiet",
+    "dev": "browser-sync start --server . --files 'assets/*.css,**/*.js,**/*.html' --no-open",
+    "lint": "eslint default_version/app.js --quiet",
     "test": "npm run lint"
   },
   "homepage": "https://github.com/algolia/instant-search-demo#readme",
