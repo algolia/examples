@@ -7,6 +7,11 @@ app({
 });
 
 function app(opts) {
+  // ---------------------
+  //
+  //  Init
+  //
+  // ---------------------
   var search = instantsearch({
     appId: opts.appId,
     apiKey: opts.apiKey,
@@ -14,10 +19,15 @@ function app(opts) {
     urlSync: true
   });
 
+  // ---------------------
+  //
+  //  Default widgets
+  //
+  // ---------------------
   search.addWidget(
     instantsearch.widgets.searchBox({
       container: '#search-input',
-      placeholder: 'Search for products'
+      placeholder: 'Search for products by name, type, brand, ...',
     })
   );
 
@@ -28,8 +38,14 @@ function app(opts) {
       templates: {
         item: getTemplate('hit'),
         empty: getTemplate('no-results')
+      },
+      transformData: {
+        item: function(item) {
+          item.starsLayout = getStarsHTML(item.rating);
+          return item;
+        }
       }
-    })
+     })
   );
 
   search.addWidget(
@@ -59,38 +75,50 @@ function app(opts) {
     })
   );
 
-  // search.addWidget(
-  //   instantsearch.widgets.hierarchicalMenu({
-  //     container: '#hierarchical-categories',
-  //     attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1', 'hierarchicalCategories.lvl2'],
-  //     sortBy: ['isRefined', 'count:desc', 'name:asc'],
-  //     showParentLevel: false,
-  //     limit: 10,
-  //     templates: {
-  //       header: getHeader('Category'),
-  //       item:  '<a href="javascript:void(0);" class="facet-item {{#isRefined}}active{{/isRefined}}"><span class="facet-name"><i class="fa fa-angle-right"></i> {{name}}</span class="facet-name"><span class="ais-hierarchical-menu--count">{{count}}</span></a>'
-  //     }
-  //   })
-  // );
 
-  // search.addWidget(
-  //   instantsearch.widgets.refinementList({
-  //     container: '#brand',
-  //     attributeName: 'brand',
-  //     sortBy: ['isRefined', 'count:desc', 'name:asc'],
-  //     limit: 10,
-  //     operator: 'or',
-  //     searchForFacetValues: {
-  //       placeholder: 'Search for brands',
-  //       templates: {
-  //         noResults: '<div class="sffv_no-results">No matching brands.</div>'
-  //       }
-  //     },
-  //     templates: {
-  //       header: getHeader('Brand')
-  //     }
-  //   })
-  // );
+  // ---------------------
+  //
+  //  Filtering widgets
+  //
+  // ---------------------
+  search.addWidget(
+    instantsearch.widgets.hierarchicalMenu({
+      container: '#hierarchical-categories',
+      attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1', 'hierarchicalCategories.lvl2'],
+      sortBy: ['isRefined', 'count:desc', 'name:asc'],
+      showParentLevel: false,
+      limit: 10,
+      templates: {
+        header: getHeader('Category'),
+        item:  '<a href="javascript:void(0);" class="facet-item {{#isRefined}}active{{/isRefined}}"><span class="facet-name"><i class="fa fa-angle-right"></i> {{name}}</span class="facet-name"><span class="ais-hierarchical-menu--count">{{count}}</span></a>'
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.refinementList({
+      container: '#brand',
+      attributeName: 'brand',
+      sortBy: ['isRefined', 'count:desc', 'name:asc'],
+      limit: 5,
+      operator: 'or',
+      showMore: {
+        limit: 10
+      },
+      searchForFacetValues: {
+        placeholder: 'Search for brands',
+        templates: {
+          noResults: '<div class="sffv_no-results">No matching brands.</div>'
+        }
+      },
+      templates: {
+        header: getHeader('Brand')
+      },
+      collapsible: {
+        collapsed: false
+      }
+    })
+  );
 
   search.addWidget(
     instantsearch.widgets.rangeSlider({
@@ -103,6 +131,9 @@ function app(opts) {
       },
       templates: {
         header: getHeader('Price')
+      },
+      collapsible: {
+        collapsed: false
       }
     })
   );
@@ -114,10 +145,48 @@ function app(opts) {
       labels: {
         currency: '$',
         separator: 'to',
-        button: 'Go'
+        button: 'Apply'
       },
       templates: {
         header: getHeader('Price range')
+      },
+      collapsible: {
+        collapsed: true
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.starRating({
+      container: '#stars',
+      attributeName: 'rating',
+      max: 5,
+      labels: {
+        andUp: '& Up'
+      },
+      templates: {
+        header: getHeader('Rating')
+      },
+      collapsible: {
+        collapsed: false
+      }
+    })
+  );
+
+  search.addWidget(
+    instantsearch.widgets.toggle({
+      container: '#free-shipping',
+      attributeName: 'free_shipping',
+      label: 'Free Shipping',
+      values: {
+        on: true,
+        off: false
+      },
+      templates: {
+        header: getHeader('Shipping')
+      },
+      collapsible: {
+        collapsed: true
       }
     })
   );
@@ -131,6 +200,9 @@ function app(opts) {
       showMore: true,
       templates: {
         header: getHeader('Type')
+      },
+      collapsible: {
+        collapsed: true
       }
     })
   );
@@ -138,10 +210,28 @@ function app(opts) {
   search.start();
 }
 
+
+// ---------------------
+//
+//  Helper functions
+//
+// ---------------------
 function getTemplate(templateName) {
   return document.querySelector('#' + templateName + '-template').innerHTML;
 }
 
 function getHeader(title) {
   return '<h5>' + title + '</h5>';
+}
+
+function getStarsHTML(rating, maxRating) {
+  var html = '';
+  maxRating = maxRating || 5;
+  console.log(rating);
+
+  for (var i=0; i<maxRating; ++i) {
+    html += '<span class="ais-star-rating--star' + ((i < rating)? '' : '__empty') +  '"></span>';
+  }
+
+  return html;
 }

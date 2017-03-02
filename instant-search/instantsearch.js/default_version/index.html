@@ -24,14 +24,18 @@
     <div id="left-column">
       <div id="hierarchical-categories" class="facet"></div>
       <div id="brand" class="facet"></div>
+      <div id="stars" class="facet"></div>
       <div id="price" class="facet"></div>
       <div id="price-range" class="facet"></div>
       <div id="type" class="facet"></div>
+      <div id="popularity-selector" class="facet"></div>
+      <div id="free-shipping" class="facet"></div>
     </div>
 
     <div id="right-column">
       <div id="sort-by-wrapper"><span id="sort-by"></span></div>
       <div id="stats"></div>
+      <div id="active-filters"></div>
       <div id="hits"></div>
       <div id="pagination"></div>
     </div>
@@ -52,6 +56,7 @@
       <div class="hit-content">
         <h3 class="hit-price">${{price}}</h3>
         <h2 class="hit-name">{{{_highlightResult.name.value}}}</h2>
+        <h2 class="hit-stars">{{{starsLayout}}}</h2>
         <p class="hit-description">{{{_highlightResult.description.value}}}</p>
       </div>
     </div>
