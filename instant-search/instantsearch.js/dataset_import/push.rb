@@ -20,7 +20,7 @@ INDEX_BASE = ARGV[2]
 ####
 #### LOAD DATA
 ####
-products = JSON.parse File.read("data.json")
+products = JSON.parse File.read("bestbuy_dataset_light.json")
 
 
 ####
