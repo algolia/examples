@@ -87,7 +87,7 @@ function app(opts) {
       container: '#hierarchical-categories',
       attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1', 'hierarchicalCategories.lvl2'],
       sortBy: ['isRefined', 'count:desc', 'name:asc'],
-      showParentLevel: false,
+      showParentLevel: true,
       limit: 10,
       templates: {
         header: getHeader('Category'),
@@ -226,7 +226,8 @@ function getHeader(title) {
 }
 
 function getCategoryBreadcrumb(item) {
-  return item._highlightResult.categories.map(function(category) { return category.value; }).join(' > ');
+  var highlightValues = item._highlightResult.categories || [];
+  return highlightValues.map(function(category) { return category.value; }).join(' > ');
 }
 
 function getStarsHTML(rating, maxRating) {
