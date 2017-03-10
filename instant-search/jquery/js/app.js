@@ -232,49 +232,50 @@ $(document).ready(function () {
     }
     $main.addClass('no-results');
 
+    var facetRefinements = algoliaHelper.state.facetsRefinements;
+    var disjunctiveFacetsRefinements = algoliaHelper.state.disjunctiveFacetsRefinements;
+    var numericRefinements = algoliaHelper.state.numericRefinements;
+
     var filters = [];
-    var i;
-    var j;
-    for (i in algoliaHelper.state.facetsRefinements) {
-      if ({}.hasOwnProperty(algoliaHelper.state.facetsRefinements, i)) {
+
+    Object.keys(facetRefinements).forEach(function(facetName) {
+      var facetValue = facetRefinements[facetName];
+      filters.push({
+        'class': 'toggle-refine',
+        facet: facetName,
+        facet_value: facetValue,
+        label: FACETS_LABELS[facetName] + ': ',
+        label_value: facetValue
+      });
+    });
+
+    Object.keys(disjunctiveFacetsRefinements).forEach(function(facetName) {
+      var facetValues = disjunctiveFacetsRefinements[facetName];
+      facetValues.forEach(function(facetValue) {
         filters.push({
           'class': 'toggle-refine',
-          facet: i, facet_value: algoliaHelper.state.facetsRefinements[i],
-          label: FACETS_LABELS[i] + ': ',
-          label_value: algoliaHelper.state.facetsRefinements[i]
+          facet: facetName,
+          facet_value: facetValue,
+          label: FACETS_LABELS[facetName] + ': ',
+          label_value: facetValue,
         });
-      }
-    }
-    for (i in algoliaHelper.state.disjunctiveFacetsRefinements) {
-      if ({}.hasOwnProperty(algoliaHelper.state.disjunctiveFacetsRefinements, i)) {
-        for (j in algoliaHelper.state.disjunctiveFacetsRefinements[i]) {
-          if ({}.hasOwnProperty(algoliaHelper.state.disjunctiveFacetsRefinements[i], j)) {
-            filters.push({
-              'class': 'toggle-refine',
-              facet: i,
-              facet_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j],
-              label: FACETS_LABELS[i] + ': ',
-              label_value: algoliaHelper.state.disjunctiveFacetsRefinements[i][j]
-            });
-          }
-        }
-      }
-    }
-    for (i in algoliaHelper.state.numericRefinements) {
-      if ({}.hasOwnProperty(algoliaHelper.state.numericRefinements, i)) {
-        for (j in algoliaHelper.state.numericRefinements[i]) {
-          if ({}.hasOwnProperty(algoliaHelper.state.numericRefinements[i], j)) {
-            filters.push({
-              'class': 'remove-numeric-refine',
-              facet: i,
-              facet_value: j,
-              label: FACETS_LABELS[i] + ' ',
-              label_value: j + ' ' + algoliaHelper.state.numericRefinements[i][j]
-            });
-          }
-        }
-      }
-    }
+      });
+    });
+
+    Object.keys(numericRefinements).forEach(function(attributeName) {
+      var operators = numericRefinements[attributeName];
+      Object.keys(operators).forEach(function(operator) {
+        var values = operators[operator];
+        filters.push({
+          'class': 'remove-numeric-refine',
+          facet: attributeName,
+          facet_value: operator,
+          label: FACETS_LABELS[attributeName] + ' ',
+          label_value: operator + ' ' + values,
+        });
+      });
+    });
+
     $hits.html(noResultsTemplate.render({query: content.query, filters: filters}));
   }
 
