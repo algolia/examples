@@ -96,6 +96,7 @@ header img {
 .hit-image {
   display: inline-block;
   width: 16%;
+  text-align: center;
 }
 .hit-image img {
   max-width: 100%;
@@ -111,17 +112,11 @@ header img {
 }
 .hit-stars {
   font-size: 17px;
-  margin: 3px 0;
-}/*
-.hit-content .hit-price {
-  font-size: 20px;
-  float: right;
-  margin-left: 20px;
-  color: #ed5565;
+  margin: 4px 0;
+  color: #868686;
 }
-*/
+
 .hit-content .hit-price {
-  /* font-size: 20px; */
   float: right;
   margin-left: 20px;
   color: #ffffff;
@@ -133,10 +128,6 @@ header img {
   font-weight: normal;
   margin-top: 0;
 }
-/*.hit-content em {
-  font-style: normal;
-  background: #fbdde0;
-}*/
 
 .hit-content em {
   font-style: normal;
@@ -144,15 +135,26 @@ header img {
   border-bottom: solid 1px rgba(244, 107, 91, 0.5);
 }
 
-.hit-description em {
-  /*color: #333;*/
-  /*font-weight: bold;*/
-  border: 0;
+.hit-content p {
+  font-size: 13px;
 }
 
+.hit-description em {
+  color: inherit;
+}
+
+.hit-category-breadcrumb {
+  margin: 5px 0 2px 0;
+}
+
+  .hit-category-breadcrumb em {
+    color: inherit;
+  }
+
 .hit-content .hit-description {
-  color: #999;
+  color: #868686;
   margin: 1px 0 10px 0;
+  font-size: 14px;
 }
 
 /* PAGINATION */
@@ -431,27 +433,27 @@ a.clear-all:hover {
 /* Star Rating */
 .ais-star-rating--star,
 .ais-star-rating--star__empty {
-    display: inline-block;
-    width: 1em;
-    height: 1em
+  display: inline-block;
+  width: 1em;
+  height: 1em
 }
 
 .ais-star-rating--item__active {
-    font-weight: 700
+
 }
 
 .ais-star-rating--star:before {
-    content: '\2605';
-    color: #FBAE00
+  content: '\2605';
+  color: #FBAE00
 }
 
 .ais-star-rating--star__empty:before {
-    content: '\2606';
-    color: #FBAE00
+  content: '\2606';
+  color: #FBAE00
 }
 
 .ais-star-rating--link__disabled .ais-star-rating--star:before,.ais-star-rating--link__disabled .ais-star-rating--star__empty:before {
-    color: #C9C9C9
+  color: #C9C9C9
 }
 
 

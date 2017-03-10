@@ -42,6 +42,7 @@ function app(opts) {
       transformData: {
         item: function(item) {
           item.starsLayout = getStarsHTML(item.rating);
+          item.categories = getCategoryBreadcrumb(item);
           return item;
         }
       }
@@ -224,10 +225,13 @@ function getHeader(title) {
   return '<h5>' + title + '</h5>';
 }
 
+function getCategoryBreadcrumb(item) {
+  return item._highlightResult.categories.map(function(category) { return category.value; }).join(' > ');
+}
+
 function getStarsHTML(rating, maxRating) {
   var html = '';
   maxRating = maxRating || 5;
-  console.log(rating);
 
   for (var i=0; i<maxRating; ++i) {
     html += '<span class="ais-star-rating--star' + ((i < rating)? '' : '__empty') +  '"></span>';
