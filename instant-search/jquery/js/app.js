@@ -57,16 +57,16 @@ $(document).ready(function () {
   .focus();
 
   // Search for facet value input binding
-  $(document).on('input', '.sffv-input', function() {
+  $(document).on('input', '.sffv-input', function () {
     var $this = $(this);
     var query = $this.val();
-    if(query === '') {
+    if (query === '') {
       algoliaHelper.search();
     } else {
       var facet = $this.data('facet');
       var isDisjunctive = PARAMS.disjunctiveFacets.indexOf(facet) !== -1;
       var $resultList = $('.facet-list-' + facet);
-      algoliaHelper.searchForFacetValues(facet, query).then(function(content) {
+      algoliaHelper.searchForFacetValues(facet, query).then(function (content) {
         content.facet = facet;
         content.disjunctive = isDisjunctive;
         $resultList.html(sffvResultsTemplate.render(content));
@@ -238,7 +238,7 @@ $(document).ready(function () {
 
     var filters = [];
 
-    Object.keys(facetRefinements).forEach(function(facetName) {
+    Object.keys(facetRefinements).forEach(function (facetName) {
       var facetValue = facetRefinements[facetName];
       filters.push({
         'class': 'toggle-refine',
@@ -249,29 +249,29 @@ $(document).ready(function () {
       });
     });
 
-    Object.keys(disjunctiveFacetsRefinements).forEach(function(facetName) {
+    Object.keys(disjunctiveFacetsRefinements).forEach(function (facetName) {
       var facetValues = disjunctiveFacetsRefinements[facetName];
-      facetValues.forEach(function(facetValue) {
+      facetValues.forEach(function (facetValue) {
         filters.push({
           'class': 'toggle-refine',
           facet: facetName,
           facet_value: facetValue,
           label: FACETS_LABELS[facetName] + ': ',
-          label_value: facetValue,
+          label_value: facetValue
         });
       });
     });
 
-    Object.keys(numericRefinements).forEach(function(attributeName) {
+    Object.keys(numericRefinements).forEach(function (attributeName) {
       var operators = numericRefinements[attributeName];
-      Object.keys(operators).forEach(function(operator) {
+      Object.keys(operators).forEach(function (operator) {
         var values = operators[operator];
         filters.push({
           'class': 'remove-numeric-refine',
           facet: attributeName,
           facet_value: operator,
           label: FACETS_LABELS[attributeName] + ' ',
-          label_value: operator + ' ' + values,
+          label_value: operator + ' ' + values
         });
       });
     });
