@@ -3,21 +3,21 @@
 app({
   appId: 'latency',
   apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
-  indexName: 'instant_search'
+  indexName: 'instant_search',
 });
 
 function app(opts) {
-  var search = instantsearch({
+  const search = instantsearch({
     appId: opts.appId,
     apiKey: opts.apiKey,
     indexName: opts.indexName,
-    urlSync: true
+    urlSync: true,
   });
 
   search.addWidget(
     instantsearch.widgets.searchBox({
       container: '#search-input',
-      placeholder: 'Search for products'
+      placeholder: 'Search for products',
     })
   );
 
@@ -27,14 +27,14 @@ function app(opts) {
       hitsPerPage: 10,
       templates: {
         item: getTemplate('hit'),
-        empty: getTemplate('no-results')
-      }
+        empty: getTemplate('no-results'),
+      },
     })
   );
 
   search.addWidget(
     instantsearch.widgets.stats({
-      container: '#stats'
+      container: '#stats',
     })
   );
 
@@ -43,19 +43,19 @@ function app(opts) {
       container: '#sort-by',
       autoHideContainer: true,
       indices: [{
-        name: opts.indexName, label: 'Most relevant'
+        name: opts.indexName, label: 'Most relevant',
       }, {
-        name: opts.indexName + '_price_asc', label: 'Lowest price'
+        name: `${opts.indexName}_price_asc`, label: 'Lowest price',
       }, {
-        name: opts.indexName + '_price_desc', label: 'Highest price'
-      }]
+        name: `${opts.indexName}_price_desc`, label: 'Highest price',
+      }],
     })
   );
 
   search.addWidget(
     instantsearch.widgets.pagination({
       container: '#pagination',
-      scrollTo: '#search-input'
+      scrollTo: '#search-input',
     })
   );
 
@@ -67,8 +67,8 @@ function app(opts) {
       limit: 10,
       operator: 'or',
       templates: {
-        header: getHeader('Category')
-      }
+        header: getHeader('Category'),
+      },
     })
   );
 
@@ -82,12 +82,12 @@ function app(opts) {
       searchForFacetValues: {
         placeholder: 'Search for brands',
         templates: {
-          noResults: '<div class="sffv_no-results">No matching brands.</div>'
-        }
+          noResults: '<div class="sffv_no-results">No matching brands.</div>',
+        },
       },
       templates: {
-        header: getHeader('Brand')
-      }
+        header: getHeader('Brand'),
+      },
     })
   );
 
@@ -96,8 +96,8 @@ function app(opts) {
       container: '#price',
       attributeName: 'price',
       templates: {
-        header: getHeader('Price')
-      }
+        header: getHeader('Price'),
+      },
     })
   );
 
@@ -109,8 +109,8 @@ function app(opts) {
       limit: 10,
       operator: 'and',
       templates: {
-        header: getHeader('Type')
-      }
+        header: getHeader('Type'),
+      },
     })
   );
 
@@ -118,9 +118,9 @@ function app(opts) {
 }
 
 function getTemplate(templateName) {
-  return document.querySelector('#' + templateName + '-template').innerHTML;
+  return document.querySelector(`#${templateName}-template`).innerHTML;
 }
 
 function getHeader(title) {
-  return '<h5>' + title + '</h5>';
+  return `<h5>${title}</h5>`;
 }
