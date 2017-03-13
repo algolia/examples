@@ -8,34 +8,28 @@
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" type="text/css" href="../assets/style.css">
+  <link rel="stylesheet" type="text/css" href="./assets/style.css">
 </head>
 <body>
 
   <!-- INTERFACE -->
   <header>
-    <a href="."><img src="../assets/img/instant_search_logo@2x.png"/></a>
+    <a href="."><img src="./assets/img/instant_search_logo@2x.png"/></a>
     <div id="search-input"></div>
     <div id="search-input-icon"></div>
   </header>
 
   <main>
     <div id="left-column">
-      <div id="hierarchical-categories" class="facet"></div>
+      <div id="category" class="facet"></div>
       <div id="brand" class="facet"></div>
-      <div id="stars" class="facet"></div>
       <div id="price" class="facet"></div>
-      <div id="price-range" class="facet"></div>
       <div id="type" class="facet"></div>
-      <div id="popularity-selector" class="facet"></div>
-      <div id="free-shipping" class="facet"></div>
     </div>
 
     <div id="right-column">
       <div id="sort-by-wrapper"><span id="sort-by"></span></div>
       <div id="stats"></div>
-      <div id="active-filters"></div>
       <div id="hits"></div>
       <div id="pagination"></div>
     </div>
@@ -56,8 +50,6 @@
       <div class="hit-content">
         <h3 class="hit-price">${{price}}</h3>
         <h2 class="hit-name">{{{_highlightResult.name.value}}}</h2>
-        <p class="hit-category-breadcrumb">{{{categories}}}</p>
-        <p class="hit-stars">{{{starsLayout}}} ({{popularity}})</p>
         <p class="hit-description">{{{_highlightResult.description.value}}}</p>
       </div>
     </div>
@@ -73,7 +65,7 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
-  <script src="app.js"></script>
+  <script src="search-simplified.js"></script>
   <!-- /SCRIPTS -->
 </body>
 </html>
