@@ -5,10 +5,11 @@ This is a sample project of an [Algolia](http://www.algolia.com) Instant-Search 
 
 ## Demos
 Try out the [demo](http://demos.algolia.com/instant-search-demo/)
-![Instant search](default_version/instant-search-default.gif)
+![Instant search](screenshots/instant-search-default.gif)
 
 ### Simplified version
-This project also includes a simplified version of the implementation. [Learn more about it](simplified_version/).
+This project also includes a simplified version of the implementation that includes a few less filtering options.
+The code is available in the files `index-simplified.html` and `search-simplified.js`. You can [see it live here](http://demos.algolia.com/instant-search-demo/index-simplified.html).
 
 ## Features
 * Full-JavaScript/frontend implementation based on [instantsearch.js](https://community.algolia.com/instantsearch.js/)
@@ -56,5 +57,7 @@ We've extracted 20 000+ products from the [Best Buy Developer API](https://devel
 
 ## Tutorial
 
-**Follow this [step by step tutorial](https://www.algolia.com/doc/tutorials/instant-search#) (on Algolia.com) to learn how this implementation works** and how it has been built using the [Algolia's Javascript API client](https://github.com/algolia/algoliasearch-client-js) and its [helper](https://github.com/algolia/algoliasearch-helper-js).
+**Follow this [step by step tutorial](https://www.algolia.com/doc/guides/search/filtering-faceting/instantsearchjs) (on Algolia.com) to learn how this implementation works** and how it has been built using the [instantsearch.js library](https://community.algolia.com/instantsearch.js/).
+
+All the filtering widgets used are described in the [Filtering & Faceting guide](http://www.algolia.com/doc/guides/search/filtering-faceting/instantsearchjs)
 
