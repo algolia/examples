@@ -1,9 +1,9 @@
 /* global instantsearch */
 
 app({
-  appId: 'KHKP14DMQR',
-  apiKey: '58f74646af37a47dcd4e8914e2382917',
-  indexName: 'bestbuy',
+  appId: 'latency',
+  apiKey: '6be0576ff61c053d5f9a3225e2a90f76',
+  indexName: 'instant_search'
 });
 
 function app(opts) {
