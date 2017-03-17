@@ -6,3 +6,6 @@
 	path = geo-search
 	url = git@github.com:algolia/demo-geo-search.git
 	branch = master
+[submodule "demo-structured-result"]
+	path = demo-structured-result
+	url = git@github.com:algolia/demo-structured-result.git
