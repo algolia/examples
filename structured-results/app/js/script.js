@@ -18,9 +18,9 @@ const PARAMS = {
 const algolia = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
 const algoliaHelper = algoliasearchHelper(algolia, INDEX_NAME, PARAMS);
 const structuredDataHelper = algoliaHelper.derive(searchParameters => {
-    const params = searchParameters.setIndex(STRUCTURED_DATA_INDEX_NAME)
-    params.getRankingInfo = true
-    return params
+  const params = searchParameters.setIndex(STRUCTURED_DATA_INDEX_NAME);
+  params.getRankingInfo = true;
+  return params;
 });
 
 // DOM BINDING
@@ -125,7 +125,7 @@ function renderStructuredData(content) {
       // render only one result
       $structuredData.innerHTML = structuredDataTemplate.render({result: content.hits[0]});
       $structuredData.className = 'show-structured-data';
-      return true
+      return;
     }
   }
   $structuredData.className = '';
