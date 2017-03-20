@@ -1,6 +1,6 @@
 module.exports = {
   "extends": "algolia",
   "rules": {
-    "space-before-blocks": ["error"],
+    "space-before-blocks": 2,
   }
 };
