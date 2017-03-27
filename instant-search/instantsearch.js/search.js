@@ -183,7 +183,6 @@ function app(opts) {
       label: 'Free Shipping',
       values: {
         on: true,
-        off: false,
       },
       templates: {
         header: getHeader('Shipping'),
