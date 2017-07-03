@@ -91,11 +91,11 @@ const Content = createConnector({
         <h5>Brand</h5>
         <RefinementList
           attributeName="brand"
-          searchForFacetValues
+          withSearchBox
           translations={{ noResults: 'No matching brand' }}
         />
         <h5>Price</h5>
-        {/* <ConnectedRange attributeName="price" /> */}
+        <ConnectedRange attributeName="price" />
         <h5>Type</h5>
         <Menu attributeName="type" />
       </div>
@@ -113,6 +113,7 @@ class Range extends React.Component {
     this.onValuesUpdated = this.onValuesUpdated.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
   componentWillReceiveProps(sliderState) {
     this.setState({
       currentValues: {
@@ -121,9 +122,11 @@ class Range extends React.Component {
       },
     });
   }
+
   onValuesUpdated(values) {
     this.setState({ currentValues: { min: values[0], max: values[1] } });
   }
+
   onChange(values) {
     if (
       this.props.currentRefinement.min !== values[0] ||
@@ -132,19 +135,23 @@ class Range extends React.Component {
       this.props.refine({ min: values[0], max: values[1] });
     }
   }
+
   render() {
-    const { min, max } = this.props;
+    const { min = 0, max = 0 } = this.props;
     const { currentValues } = this.state;
+
     return (
       <div className="ais-Slider__root">
-        <Slider
-          max={Math.trunc(max)}
-          min={Math.trunc(min)}
-          onAfterChange={this.onChange}
-          onChange={this.onValuesUpdated}
-          range
-          value={[currentValues.min, currentValues.max]}
-        />
+        {currentValues.min === undefined && currentValues.max === undefined
+          ? null
+          : <Slider
+              max={Math.trunc(max)}
+              min={Math.trunc(min)}
+              onAfterChange={this.onChange}
+              onChange={this.onValuesUpdated}
+              range
+              value={[currentValues.min, currentValues.max]}
+            />}
         <div className="ais-Slider__values">
           <div>
             {min}
@@ -159,10 +166,10 @@ class Range extends React.Component {
 }
 
 Range.propTypes = {
-  currentRefinement: PropTypes.object.isRequired,
-  max: PropTypes.number.isRequired,
-  min: PropTypes.number.isRequired,
-  refine: PropTypes.func.isRequired,
+  currentRefinement: PropTypes.object,
+  max: PropTypes.number,
+  min: PropTypes.number,
+  refine: PropTypes.func,
 };
 
 const ConnectedRange = connectRange(Range);
