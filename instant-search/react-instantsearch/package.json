@@ -1,10 +1,11 @@
 {
   "private": true,
   "devDependencies": {
-    "react-scripts": "^0.8.5"
+    "react-scripts": "^1.0.10"
   },
   "dependencies": {
     "lodash": "^4.16.6",
+    "prop-types": "^15.5.10",
     "qs": "^6.3.0",
     "rc-slider": "^5.4.3",
     "react": "^15.3.2",
