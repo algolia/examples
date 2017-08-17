@@ -1,3 +1,10 @@
+# [DEPRECATED]
+
+This project has been moved to its own repository at [algolia/instant-search-demo](https://github.com/algolia/instant-search-demo)
+
+-----
+-----
+
 Instant-Search Demo
 ====================
 
