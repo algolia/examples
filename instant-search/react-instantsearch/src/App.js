@@ -87,17 +87,17 @@ const Content = createConnector({
     <div>
       <div className={noResults ? 'no-results' : ''} id="left-column">
         <h5>Category</h5>
-        <RefinementList attributeName="categories" />
+        <RefinementList attribute="categories" />
         <h5>Brand</h5>
         <RefinementList
-          attributeName="brand"
+          attribute="brand"
           withSearchBox
           translations={{ noResults: 'No matching brand' }}
         />
         <h5>Price</h5>
-        <ConnectedRange attributeName="price" />
+        <ConnectedRange attribute="price" />
         <h5>Type</h5>
-        <Menu attributeName="type" />
+        <Menu attribute="type" />
       </div>
       {rightColumn}
     </div>
@@ -185,10 +185,10 @@ function Hit({ hit }) {
           ${hit.price}
         </div>
         <div className="hit-name">
-          <Highlight attributeName="name" hit={hit} />
+          <Highlight attribute="name" hit={hit} />
         </div>
         <div className="hit-description">
-          <Highlight attributeName="description" hit={hit} />
+          <Highlight attribute="description" hit={hit} />
         </div>
       </div>
     </div>
