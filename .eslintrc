@@ -1,6 +1,7 @@
 {
   "extends": "algolia",
   "rules": {
-    "object-shorthand": 0
+    "object-shorthand": 0,
+    "algolia/relative-require": 0
   }
 }
